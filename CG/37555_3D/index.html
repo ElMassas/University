@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Tower of Samarra</title>
+        <script src="lib/x3dom-full.js"></script>
+        <link rel="stylesheet" href="lib/x3dom.css">
+    </head>
+
+    <body>
+
+    	<x3d width="1000px" height="1000px">
+    		<scene>
+
+    			<Viewpoint
+                    position = '0 3 16'
+                    orientation = '0 -.25 -1 0' >
+                </Viewpoint>
+            
+                <Background
+                    skyColor = '0 0.7 0.9'>
+                </Background>
+
+                <PointLight DEF = 'light1'
+                    location = '10 12 4' >
+                </PointLight>
+
+                <Switch whichChoice = '-1'>
+                    
+                    <Shape DEF = 'level1'>
+                    	<appearance>
+                    		<ImageTexture url = "./media/texturaNiveis.png/"/>
+	                    </appearance>
+                        <Cylinder
+                            height = '1.2'
+                            radius = '0.9' >
+                        </Cylinder>
+                    </Shape>
+                    
+                    <Shape DEF = 'level2'>
+                    	<appearance>
+		    					<ImageTexture url = "./media/texturaNiveis.png/"/>
+	                    </appearance>
+                        <Cylinder
+                            height = '1.0'
+                            radius = '0.75' >
+                        </Cylinder>
+                    </Shape>
+
+                    <Shape DEF = 'level3'>
+                    	<appearance>
+		    					<ImageTexture url = "./media/texturaNiveis.png/"/>
+	                    </appearance>
+                        <Cylinder
+                            height = '0.8'
+                            radius = '0.6' >
+                        </Cylinder>
+                    </Shape>
+
+                    <Shape DEF = 'level4'>
+                    	<appearance>
+		    					<ImageTexture url= "./media/texturaNiveis.png/"/>
+	                    </appearance>
+                        <Cylinder
+                            height = '0.65'
+                            radius = '0.35' >
+                        </Cylinder>
+                    </Shape>
+
+                    <Shape DEF = 'level5'>
+                    	<appearance>
+		    					<ImageTexture url = "./media/texturaNiveis.png/"/>
+	                    </appearance>
+                        <Cylinder
+                            height = '0.3'
+                            radius = '0.2' >
+                        </Cylinder>
+                    </Shape>
+
+                    <Shape DEF = 'level6'>
+                    	<appearance>
+                    		<ImageTexture url= "./media/texturaTopo.png/"/>
+	                    </appearance>
+                        <Cylinder
+                            height = '0.2'
+                            radius = '0.1' >
+                        </Cylinder>
+                    </Shape>
+
+                    <Shape DEF = 'base'>
+                    	<appearance>
+                    		<ImageTexture url = "./media/basetexture.png/"/>
+	                    </appearance>
+                        <Box
+                            size = "2.5 0.8 2.5">
+                        </Box>
+                    </Shape>
+
+                </Switch>
+
+	    		<transform def = "monument">
+	    			<transform translation = "0 0 0">
+	    				<shape use = "base">
+	    				</shape>
+	    			</transform>
+
+	    			<transform translation = "0 0.8 0" >
+	    				<shape use = "level1">
+	    				</shape>
+	    			</transform>
+
+	    			<transform translation = "0 1.8 0" >
+	    				<shape use = "level2">
+	    				</shape>
+	    			</transform>
+
+	    			<transform translation = "0 2.6 0" >
+	    				<shape use = "level3">
+	    				</shape>
+	    			</transform>
+
+	    			<transform translation = "0 3.2 0" >
+	    				<shape use = "level4">
+	    				</shape>
+	    			</transform>
+
+	    			<transform translation = "0 3.6 0" >
+	    				<shape use = "level5">
+	    				</shape>
+	    			</transform>
+
+	    			<transform translation = "0 3.8 0" >
+	    				<shape use = "level6">
+	    				</shape>
+	    			</transform>
+	    		</transform>
+
+    		</scene>
+
+		</x3d>
+	</body>
+</html>

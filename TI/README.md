@@ -1,0 +1,26 @@
+# TI_Trabalho
+
+**Objective**
+Assignment for Theory of Information subject in which we are required to compress and decompress a stream of data, while checking and correcting errors upon decompressing, as well as do a probabilities study on the data
+
+**Some links refering to case study of which algorithm to choose for the assignment:**
+https://stackoverflow.com/questions/4716116/what-is-the-best-file-compression-of-random-binary-data-that-you-can-achieve
+https://stackoverflow.com/questions/16469410/data-compression-algorithms
+https://en.wikipedia.org/wiki/Lossless_compression
+https://www.youtube.com/watch?v=goOa3DGezUA
+https://github.com/manassra/LZ77-Compressor
+https://en.wikipedia.org/wiki/LZ77_and_LZ78
+https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
+https://catchchallenger.first-world.info/wiki/Quick_Benchmark:_Gzip_vs_Bzip2_vs_LZMA_vs_XZ_vs_LZ4_vs_LZO
+https://cs.stackexchange.com/questions/50305/huffman-coding-vs-lzw-algorithm
+https://www.quora.com/In-data-compression-what-is-the-difference-between-LZW-and-Huffman-coding-technique
+http://web.mit.edu/6.02/www/f2011/handouts/3.pdf
+https://rosettacode.org/wiki/LZW_compression#Python
+https://www.geeksforgeeks.org/lzw-lempel-ziv-welch-compression-technique/
+https://github.com/adityagupta3006/LZW-Compressor-in-Python
+https://github.com/Ekta1994/LZW-Compression
+https://github.com/SarahSimonLuz/LZW-compression/blob/master/comprimir.py
+https://docs.python.org/3/
+
+*How to run the code:*
+> ./fonte 1000 | CODIFICADOR | ./canal N | DESCODIFICADOR > out.txt

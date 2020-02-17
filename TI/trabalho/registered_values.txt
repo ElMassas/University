@@ -1,0 +1,7 @@
+size of data: 16
+ -> Inserted data:
+off----
+broken-
+
+Compressed:
+| 111 | 102 | 102 | 45 | 131 | 45 | 10 | 98 | 114 | 111 | 107 | 101 | 110 | 133 

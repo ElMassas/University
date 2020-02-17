@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Animal Farm</title>
+
+        <style type = "text/css">
+        th{
+        	padding: 1em;
+        	background-color: #A0522D;
+        	color:white;
+        }
+        td{
+        	padding: 0.5em;
+        	background-color: #C8C8C8;
+        	width: 50%;
+        	text-align: center;
+        }
+        table{
+        	width:100%;
+        }
+        h1,h2, h4{
+        	text-align: center;
+        }
+
+
+        @font-face{
+        	font-family: 'FranklySpokenTwo';
+        	src: url('lib/FranklySpokenTwo.TTF'); /*url para ficheiro local*/
+        }
+
+        @font-face{
+        	font-family: 'libelsuit';
+        	src: url('lib/libelsuit.TTF');
+
+        }
+
+        @font-face{
+        	font-family: 'ComicSans';
+        	src: url('lib/ComicSans.TTF');
+        }
+    	</style>
+    	<script type='text/javascript' src='lib/tween.js'></script>
+        <script type = "text/javascript" src = "lib/rework.js"></script>
+
+    </head>
+    <body onload = "main();">
+
+    	<h1>Trabalho 2D usando C2D, Aluno n.º 37555 </h1>
+        <table>
+            <tr>
+                <th>Original</th>
+                <th>Recreation</th>
+            </tr>
+            <tr>
+                <td><img src="media/Animal_farm.jpeg" width="244" height="400"></img></td>
+                <td><canvas id = "animal_farm" width="244" height="400"></canvas></td>
+            </tr>
+        </table>
+        <h2> Animal Farm is a novel by George Orwell, wich was first published in England on 17 August 1945. It's meant to be a reflection, on the events that led to the Russian Revolution of 1917, and then on to the Stalinist era.
+
+        It's an iconic Book, with a powerfull message that is still used nowadays to analize opressive regimes that "focus" on the People. </h2>
+        <h4>Engenharia Informática, Computação Gráfica &mdash; 2017-2018</h4>
+
+
+        <canvas id="animal_farm" width="244" height="400" />
+    </body>
+</html>
