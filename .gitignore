@@ -70,7 +70,7 @@ captures/
 .externalNativeBuild
 
 # Google Services (e.g. APIs or Firebase)
-# google-services.json
+google-services.json
 
 # Freeline
 freeline.py
@@ -133,11 +133,12 @@ output.json
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
-# *.iml
-# *.ipr
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+*.iml
+*.ipr
+target/
 
 # CMake
 cmake-build-*/
@@ -466,10 +467,13 @@ TSWLatexianTemp*
 **/nbproject/private/
 **/nbproject/Makefile-*.mk
 **/nbproject/Package-*.bash
+build/
 nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+nbactions.xml
+nb-configuration.xml
 
 ### Node ###
 # Logs
@@ -833,6 +837,8 @@ hs_err_pid*
 
 # Mongo Explorer plugin
 .idea/mongoSettings.xml
+
+tomcat
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 
