@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 //https://docs.oracle.com/javase/tutorial/networking/sockets/index.html
 public class EchoClient {
@@ -22,8 +23,8 @@ public class EchoClient {
     public static void main(String[] args) throws IOException {
         // exigir os argumentos necessarios
 
-        if (args.length < 2) {
-            System.err.println("Argumentos insuficientes:  java EchoClient ADDRESS PORT");
+        if (args.length < 3) {
+            System.err.println("Argumentos insuficientes:  java EchoClient ADDRESS PORT MESSAGE");
             System.exit(1);
         }
 
@@ -32,15 +33,13 @@ public class EchoClient {
             int p = Integer.parseInt(args[1]);
 
 
-
             EchoClient cl = new EchoClient(addr, p);
 
             // ler o texto a enviar ao servidor
-            byte[] b = new byte[256];
-            int lidos = System.in.read(b);
-            String s = new String(b, 0, lidos -1);
+            String s = args[2];
 
-            cl.go(s);   // faz o pretendido
+            cl.go(s);
+            
         } catch (Exception e) {
             System.out.println("Problema no formato dos argumentos");
             e.printStackTrace();
@@ -49,23 +48,19 @@ public class EchoClient {
 
     public void go(String msg) throws IOException {
         Socket socket = new Socket(address, sPort);
-        boolean connected = true;
-        // exercicio 1: mostrar a mensagem que vai ser enviada
-        System.out.println(msg);
+        
+        System.out.println("Enviada -> " + msg);
 
-        /*while(connected){
-            InputStreamReader isr = new InputStreamReader(socket.getInputStream());
-            BufferedReader bf = new BufferedReader(isr);
-            
-            
-        }*/
-        // ...
-        // ... exercicio 3
-        // ja esta connected
-        // escrever a mensagem?
-        //OutputStream socketOut = s.getOutputStream();
-        //InputStream socketIn = s.getInputStream();
-
+        //send messagge
+        OutputStream socketOut = socket.getOutputStream();
+        socketOut.write(msg.getBytes());
+        
+        //Read message
+        InputStream socketIn = socket.getInputStream();
+        byte[] b = new byte[256];
+        int lidos = socketIn.read(b);
+        String resp = new String(b, 0, lidos);
+        System.out.println("Recebida -> " + resp);
     }
 
 }
