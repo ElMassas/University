@@ -1,0 +1,11 @@
+https://en.wikipedia.org/wiki/Minimal_instruction_set_computer
+https://en.wikipedia.org/wiki/Comparison_of_parser_generators#Regular_languages
+https://johnidm.gitbooks.io/compiladores-para-humanos/content/part2/using-jflex-java-cup.html
+https://jflex.de/manual.html
+https://www.cs.princeton.edu/~appel/modern/java/CUP/manual.html
+http://www2.cs.tum.edu/projects/cup/
+http://www.dabeaz.com/ply/
+https://github.com/dabeaz/ply
+https://wiki.python.org/moin/LanguageParsing
+https://martinfowler.com/bliki/HelloCup.html
+https://github.com/jflex-de/jflex/tree/master/jflex/examples/cup-java

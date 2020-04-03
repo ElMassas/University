@@ -1,8 +1,8 @@
-package LP.aulas;
+package LP.Exercícios;
 
 import java.io.IOException;
 
-public class MDC {
+public class ficha1 {
 
     public static int mdc(int a , int b){
         if (a == b)

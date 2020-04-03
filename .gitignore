@@ -1,7 +1,4 @@
-
-# Created by https://www.gitignore.io/api/node,react,ocaml,latex,adobe,python,android,intellij,netbeans,standardml,libreoffice,androidstudio,visualstudiocode
-# Edit at https://www.gitignore.io/?templates=node,react,ocaml,latex,adobe,python,android,intellij,netbeans,standardml,libreoffice,androidstudio,visualstudiocode
-
+GEOPOLITICS/
 ### Adobe ###
 # Adobe Source Files
 *.psd

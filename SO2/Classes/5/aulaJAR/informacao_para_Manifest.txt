@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: Java 1.8.0, JS (DI, ECT, UE)
+Main-Class: so2.A
+

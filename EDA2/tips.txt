@@ -1,0 +1,24 @@
+O gcc é um compilador de distribuição livre, e está habitualmente presente nos sistemas Linux (mas também está disponível para Windows).
+
+O comando seguinte invoca o gcc para compilar o programa em C contido no ficheiro programa.c e diz-lhe para chamar programa ao executável criado:
+
+gcc -Wall programa.c -o programa
+O executável criado pode, depois, ser executado através do comando:
+
+./programa
+que indica que queremos executar o programa contido no ficheiro programa da directoria corrente (.).
+
+(A opção -Wall indica ao compilador que deve assinalar todas as ocorrências, no código, de coisas que não constituem erros mas que podem não estar correctas.)
+
+O for e o gcc
+Algumas versões do gcc compilam código C de acordo com o standard C89, também conhecido como ANSI C, com algumas extensões. Este standard não contempla a possibilidade de declarar variáveis na zona de inicialização do ciclo for, que só apareceu no C99.
+
+Se o gcc assinalar um erro numa instrução do tipo:
+
+for (int i = 0; i < MAX; ++i) ...
+isso significa que ele não está a compilar o código de acordo com o standard C99, e é necessário forçá-lo explicitamente a fazê-lo, incluindo no comando de compilação a opção -std=c99 ou -std=gnu99, como no comando:
+
+gcc -std=gnu99 -Wall programa.c -o programa
+(Usando gnu99, em vez de c99, tem-se acesso a algumas funções que não fazem parte do C99 e que podem ser úteis, como a função strdup. Usando a opção -pedantic em conjunto com a opção -std=c99 faz com que o compilador seja mais exigente na adesão do programa ao standard e ajuda a garantir a portabilidade do código.)
+
+http://gcc.gnu.org/onlinedocs/cpp/Macros.html
