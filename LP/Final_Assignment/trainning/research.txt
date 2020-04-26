@@ -9,3 +9,11 @@ https://github.com/dabeaz/ply
 https://wiki.python.org/moin/LanguageParsing
 https://martinfowler.com/bliki/HelloCup.html
 https://github.com/jflex-de/jflex/tree/master/jflex/examples/cup-java
+
+
+https://www.youtube.com/watch?v=zJ9z6Ge-vXs
+https://ply.readthedocs.io/en/latest/ply.html#introduction
+https://github.com/pemtajo/compiler_python
+https://riptutorial.com/python/example/31583/the--hello--world---of-ply---a-simple-calculator
+https://www.quora.com/What-is-a-parser-generator
+https://www.youtube.com/watch?v=L53nqHCSSFY
