@@ -1,0 +1,80 @@
+import java_cup.runtime.*;
+
+action code {:
+  // creates an instance of the machine
+  TISC machine = new TISC();
+:} ;
+
+parser code {:
+  Yylex lexer;
+
+  public void report_error(String message, Object error_info) {
+    Symbol info = (Symbol) error_info;
+
+    System.err.print("** " + message);
+    System.err.println(" at `" + info.value + "' in position " + info.left
+		       + " **");
+  }
+
+  public void report_fatal_error(String message, Object _) {
+    System.err.println("** " + message);
+  }
+:} ;
+
+init with {: lexer = new Yylex(System.in); :} ;
+
+scan with {: return lexer.yylex(); :} ;
+
+terminal        ADD, SUB, MULT, DIV, MOD, EXP ;
+terminal        PUSH_INT, PUSH_VAR, STORE_VAR, PUSH_ARG, STORE_ARG ;
+terminal        SET_ARG, CALL, LOCALS, RETURN ;
+terminal        JUMP, JEQ, JLT ;
+terminal        PUT, PUT_STR, PUT_NL ;
+terminal String IDENTIFIER ;
+terminal String	INTEGER, STRING ;
+terminal        TWO_POINTS;
+terminal	ERROR ;
+
+non terminal TISC program ;
+non terminal      tag, instruction ;
+
+
+program ::= program tag instruction
+	       {: RESULT = machine; :}
+         |
+	 ;
+
+tag ::= IDENTIFIER:e TWO_POINTS
+	 |
+	 ;
+
+instruction ::=
+	      ADD
+	        {: machine.mem.add(new Add()); :}
+	  |   SUB
+	        {: machine.mem.add(new Sub()); :}
+	  |   MULT
+            {: machine.mem.add(new Mult()); :}
+	  |   DIV
+            {: machine.mem.add(new Div()); :}
+	  |   MOD
+            {: machine.mem.add(new Mod()); :}
+	  |   EXP
+            {: machine.mem.add(new Exp()); :}
+	  |   PUSH_INT INTEGER:i
+	        {: machine.
+	  |   PUSH_VAR INTEGER:d INTEGER:n
+	  |   PUSH_ARG INTEGER:d INTEGER:n
+	  |   STORE_VAR INTEGER:d INTEGER:n
+	  |   STORE_ARG INTEGER:d INTEGER:n
+	  |   SET_ARG INTEGER:n
+          |   CALL INTEGER:d IDENTIFIER:p
+	  |   LOCALS INTEGER:a IDENTIFIER:v
+	  |   RETURN
+	  |   JUMP IDENTIFIER:e
+	  |   JEQ IDENTIFIER:e
+	  |   JLT IDENTIFIER:e
+	  |   PRINT
+	  |   PRINT_STR STRING:s
+	  |   PRINT_NL
+	  ;

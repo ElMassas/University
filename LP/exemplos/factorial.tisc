@@ -1,0 +1,27 @@
+program:locals 0 0
+	push_int 10
+	set_arg 1
+	call -1 fact	# calcula fact(10)
+	print		# e imprime
+	print_nl
+	return
+
+fact:	locals 1 2
+	push_int 1
+	store_var 0 2	# f = 1
+	push_int 1
+	store_var 0 1	# i = 1
+L1:	push_arg 0 1
+	push_var 0 1
+	jlt L2		# n < i
+	push_var 0 2
+	push_var 0 1
+	mult
+	store_var 0 2	# f = f * i
+	push_var 0 1
+	push_int 1
+	add
+	store_var 0 1	# i = i + 1
+	jump L1
+L2:	push_var 0 2
+	return		# return f

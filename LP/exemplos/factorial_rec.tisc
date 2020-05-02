@@ -1,0 +1,26 @@
+program:locals 0 1
+	push_int 10
+	store_var 0 1	# a = 10
+	push_var 0 1
+	print
+	push_var 0 1
+	set_arg 1
+	call -1 fact	# f(a)
+	print
+	print_nl
+	return
+fact:	locals 1 0
+	push_arg 0 1
+	push_int 0
+	jeq L1		# n == 0
+	jump L2
+L1:	push_int 1
+	return
+L2:	push_arg 0 1
+	push_arg 0 1
+	push_int 1
+	sub		# n - 1
+	set_arg 1
+	call 0 fact	# fact(n - 1)
+	mult		# n * fact(n - 1)
+	return

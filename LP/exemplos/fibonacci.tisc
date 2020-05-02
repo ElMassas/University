@@ -1,0 +1,46 @@
+program:locals 0 2
+	push_int 25
+	store_var 0 1		# n = 25
+	push_var 0 1
+	set_arg 1
+	call -1 fibonacci
+	store_var 0 2		# fib = fibonacci(n);
+	print_str "fibonacci("
+	push_var 0 1
+	print
+	print_str ") = "
+	push_var 0 2
+	print
+	print_nl
+	push_var 0 2
+	push_int 121393
+	jeq L1			# fib != 121393
+	print_str "O que nao esta' certo, devia ter dado 121393"
+	print_nl
+	jump L2
+L1:	print_str "O que esta' certo."
+	print_nl
+L2:	return
+
+fibonacci:
+	locals 1 0
+	push_arg 0 1
+	push_int 0
+	jeq C1
+	push_arg 0 1
+	push_int 1
+	jeq C1
+	push_arg 0 1		# default:
+	push_int 1
+	sub
+	set_arg 1
+	call 0 fibonacci	# fibonacci(x - 1)
+	push_arg 0 1
+	push_int 2
+	sub
+	set_arg 1
+	call 0 fibonacci	# fibonacci(x - 2)
+	add
+	return			# return fibonacci(x - 1) + fibonacci(x - 2)
+C1:	push_int 1
+	return			# return 1

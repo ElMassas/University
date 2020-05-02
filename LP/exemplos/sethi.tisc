@@ -1,0 +1,48 @@
+program:locals 0 1
+	push_int 0
+	store_var 0 1	# a = 0
+	call -1 P
+	print
+	print_nl
+	return
+
+P:	locals 0 3
+	push_var 1 1
+	push_int 0
+	jeq P_1		# a == 0
+	push_int 1
+	return		# return 1
+P_1:	call -1 Q
+	store_var 0 1	# x = Q()
+	print_str "x = "
+	push_var 0 1
+	print
+	print_str ", y = "
+	push_var 0 2
+	print
+	print_str ", z = "
+	push_var 0 3
+	print
+	print_nl
+	push_int 10
+	push_var 0 1
+	mult
+	return		# return 10 * x
+
+Q:	locals 0 0
+	call -1 R
+	store_var 1 2	# y = R()
+	push_int 10
+	push_var 1 2
+	mult
+	return		# return 10 * y
+
+R:	locals 0 0
+	push_int 1
+	store_var 3 1	# a = 1
+	call 2 P
+	store_var 2 3	# z = P()
+	push_int 10
+	push_var 2 3
+	mult
+	return		# return 10 * z

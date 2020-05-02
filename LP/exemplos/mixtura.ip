@@ -1,0 +1,27 @@
+void main()
+begin
+  void a()
+  begin
+    static void c();
+
+    int x;
+
+    void b()
+    begin
+      c();
+    end
+
+    void c()
+    begin
+      x *= 2;
+    end
+
+    x = 127;
+
+    b();
+
+    println("x = ", x);
+  end
+
+  a();
+end
