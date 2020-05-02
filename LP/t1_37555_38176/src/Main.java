@@ -1,5 +1,6 @@
 
 // Programa principal para a implementacaoo da maquina abstracta TISC.
+import insstructions.TISC;
 
 public class Main {
 

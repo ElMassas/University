@@ -1,12 +1,12 @@
+package insstructions;
+
+import java.util.*;
 
 // Tiny Instruction Set Computer
-
-import java.util.Stack;
-
 public class TISC {
 
   int pc, pe;
-  Stack<>;
+  List <Inst> inslst;
 
   /** Executa o programa TISC carregado na maquina. */
   public void executa()
