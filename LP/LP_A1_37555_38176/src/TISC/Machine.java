@@ -2,14 +2,12 @@ package TISC;
 
 import Operations.Operations;
 
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Stack;
+import java.util.*;
 
 public class Machine {
 
     ArrayList<Operations> operationsList;
-    Dictionary<String, Integer> labelsPc;
+    Hashtable<String, Integer> labelsPc;
     Stack<Integer> evaluationStack;
     Stack<Integer> executionStack;
     int pc, ep;
@@ -17,6 +15,10 @@ public class Machine {
 
 
     public Machine() {
+        operationsList = new ArrayList<Operations>();
+        labelsPc = new Hashtable<String, Integer>();
+        evaluationStack = new Stack<Integer>();
+        executionStack = new Stack<Integer>();
     }
 
     public ArrayList<Operations> getOperationsList() {
@@ -59,7 +61,7 @@ public class Machine {
         this.executionStack = executionStack;
     }
 
-    public void changePC(){ this.pc += 1; }
+    public void changePC(int value){ this.pc += value; }
 
     //Executes the TISC program loaded on the machine
     public void execute(){
@@ -74,7 +76,7 @@ public class Machine {
         String outcome = "";
 
         for(int i = 0; i < operationsList.size(); i ++){
-            outcome += (operationsList.get(i).toString() + "|\t");
+            outcome += (operationsList.getClass().getName() + "|\t");
         }
 
         return  outcome;

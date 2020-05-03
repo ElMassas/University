@@ -62,20 +62,32 @@ instruction ::=
 	  |   EXP
             {: machine.getOperationsList.add(new Exp()); :}
 	  |   PUSH_INT INTEGER:i
-	        {: machine.getOperationsList.add(new PushVariables(i)); :}
+	        {: machine.getOperationsList.add(new PushInt(i)); :}
 	  |   PUSH_VAR INTEGER:d INTEGER:n
 	        {: machine.getOperationsList.add(new PushVariables(d, n)); :}
 	  |   PUSH_ARG INTEGER:d INTEGER:n
-	  |   STORE_VAR INTEGER:d IN    TEGER:n
+	        {: machine.getOperationsList.add(new PushArguments(d, n)); :}
+	  |   STORE_VAR INTEGER:d INTEGER:n
+	        {: machine.getOperationsList.add(new StoreVariables(d, n)); :}
 	  |   STORE_ARG INTEGER:d INTEGER:n
+	        {: machine.getOperationsList.add(new StoreArguments(d, n)); :}
 	  |   SET_ARG INTEGER:n
-          |   CALL INTEGER:d IDENTIFIER:p
+	        {: machine.getOperationsList.add(new SetArguments(n)); :}
+      |   CALL INTEGER:d IDENTIFIER:p
+	        {: machine.getOperationsList.add(new Call(d, p)); :}
 	  |   LOCALS INTEGER:a IDENTIFIER:v
+            {: machine.getOperationsList.add(new PushVariables(d, n)); :}
 	  |   RETURN
+            {: machine.getOperationsList.add(new Return()); :}
 	  |   JUMP IDENTIFIER:e
+            {: machine.getOperationsList.add(new Jump(e)); :}
 	  |   JEQ IDENTIFIER:e
+            {: machine.getOperationsList.add(new Jeq(e)); :}
 	  |   JLT IDENTIFIER:e
+            {: machine.getOperationsList.add(new Jlt(e); :}
 	  |   PRINT
+            {: machine.getOperationsList.add(new Print()); :}
 	  |   PRINT_STR STRING:s
+            {: machine.getOperationsList.add(new PrintString(s)); :}
 	  |   PRINT_NL
-	  ;
+	        {: machine.getOperationsList.add(new PrintNewLine(); :};

@@ -1,4 +1,4 @@
 package Operations.Functions;
 
-public class Call {
+public class Calls {
 }
