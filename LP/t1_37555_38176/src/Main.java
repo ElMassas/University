@@ -4,9 +4,7 @@ import insstructions.TISC;
 
 public class Main {
 
-  public void fanã(int a ){
-    System.out.println(a);
-  }
+  ArrayList<Instructions> instructionList;
 
   public static void main(String args[])
     throws Exception
