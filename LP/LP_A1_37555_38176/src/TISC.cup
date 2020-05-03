@@ -76,7 +76,7 @@ instruction ::=
       |   CALL INTEGER:d IDENTIFIER:p
 	        {: TISC.getOperationsList().add(new Call(d, p)); :}
 	  |   LOCALS INTEGER:a IDENTIFIER:v
-            {: TISC.getOperationsList().add(new PushVariables(d, v)); :}
+            {: TISC.getOperationsList().add(new Locals(a, v)); :}
 	  |   RETURN
             {: TISC.getOperationsList().add(new Return()); :}
 	  |   JUMP IDENTIFIER:e

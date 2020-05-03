@@ -1,6 +1,6 @@
 public class PushArguments extends ArgumentsOperations {
 
-    public PushArguments(int d, int n){
+    public PushArguments(String d, String n){
         super(d, n);
     }
 

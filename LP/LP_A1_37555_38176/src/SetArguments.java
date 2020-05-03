@@ -2,8 +2,8 @@ public class SetArguments extends Operations {
 
     private int n;
 
-    public SetArguments(int n){
-        this.n = n;
+    public SetArguments(String n){
+        this.n = Integer.parseInt(n);
     }
 
     @Override

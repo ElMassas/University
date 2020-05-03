@@ -1,0 +1,26 @@
+void main()
+begin
+  int n, fib;
+
+  int fibonacci(int x)
+  begin
+    switch (x)
+      begin
+	case 0:
+	case 1:
+	  return 1;
+	default:
+	  return fibonacci(x - 1) + fibonacci(x - 2);
+      end
+  end
+
+  n = 25;
+  fib = fibonacci(n);
+
+  println("fibonacci(", n, ") = ", fib);
+
+  if (fib != 121393)
+    println("O que nao esta' certo, devia ter dado 121393");
+  else
+    println("O que esta' certo.");
+end

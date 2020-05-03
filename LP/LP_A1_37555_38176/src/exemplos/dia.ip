@@ -1,0 +1,100 @@
+void main()
+begin
+  int dia, mes, ano;
+
+  int bissexto(int ano)
+  begin
+    return ano % 4 == 0 && (ano % 100 != 0 || ano % 400 == 0);
+  end
+
+  int dias_mes(int mes, int ano)
+  begin
+    switch (mes)
+      begin
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+	  return 31;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+	  return 30;
+	case 2:
+	  return 28 + bissexto(ano);
+      end
+  end
+
+  // número de ordem do dia correspondente a uma data
+  int dia_ano(int dia, int mes, int ano)
+  begin
+    // número de dias no ano ANO até ao início do mês MES
+    int dias_ate()
+    begin
+      int dd = 0, mm;
+
+      for (mm = 1; mm < mes; ++mm)
+	dd += dias_mes(mm, ano);
+
+      return dd;
+    end
+
+    return dias_ate() + dia;
+  end
+
+  // escreve o nome do mês MES
+  void nome(int mes)
+  begin
+    switch (mes)
+      begin
+	case 1:
+	  print("Janeiro");
+	  break;
+	case 2:
+	  print("Fevereiro");
+	  break;
+	case 3:
+	  print("Marco");
+	  break;
+	case 4:
+	  print("Abril");
+	  break;
+	case 5:
+	  print("Maio");
+	  break;
+	case 6:
+	  print("Junho");
+	  break;
+	case 7:
+	  print("Julho");
+	  break;
+	case 8:
+	  print("Agosto");
+	  break;
+	case 9:
+	  print("Setembro");
+	  break;
+	case 10:
+	  print("Outubro");
+	  break;
+	case 11:
+	  print("Novembro");
+	  break;
+	case 12:
+	  print("Dezembro");
+	  break;
+      end
+  end
+
+  // programa principal
+
+  dia = 25; mes = 5; ano = 2013;
+
+  print("O dia ", dia, " de ");
+  nome(mes);
+  println(" de ", ano, " e' o ", dia_ano(dia, mes, ano), "-esimo dia do ano.");
+end

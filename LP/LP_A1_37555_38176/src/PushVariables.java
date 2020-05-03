@@ -1,11 +1,7 @@
-package Operations.Variables;
-
-import TISC;
-
 public class PushVariables extends VariableOperations {
 
-    public PushVariables( int d,int n ){
-        super(d,n);
+    public PushVariables( String d, String v ){
+        super(d,v);
     }
 
     @Override

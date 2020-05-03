@@ -3,8 +3,8 @@ public class Call extends Operations {
     private int d;
     private String e;
 
-    public Call( int d, String e ){
-        this.d = d;
+    public Call( String d, String e ){
+        this.d = Integer.parseInt(d);
         this.e = e;
     }
 

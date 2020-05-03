@@ -2,8 +2,8 @@ public class PushInt extends Operations {
 
     private int i;
 
-    public PushInt(int i){
-        this.i = i;
+    public PushInt(String i){
+        this.i = Integer.parseInt(i);
     }
 
     @Override

@@ -1,0 +1,230 @@
+bissexto:
+	locals 1 0
+	push_arg 0 1
+	push_arg 0 1
+	push_int 4
+	div
+	push_int 4
+	mult
+	sub
+	push_int 0
+	jeq i1		# ano % 4 == 0
+	jump f1
+i1:	push_arg 0 1
+	push_arg 0 1
+	push_int 100
+	div
+	push_int 100
+	mult
+	sub
+	push_int 0
+	jeq i2		# ano % 100 != 0
+	jump t2
+i2:	push_arg 0 1
+	push_arg 0 1
+	push_int 400
+	div
+	push_int 400
+	mult
+	sub
+	push_int 0
+	jeq t2		# ano % 400 == 0
+	push_int 0	# (ano % 100 != 0 || ano % 400 == 0) e' falso
+	jump e2
+t2:	push_int 1	# (ano % 100 != 0 || ano % 400 == 0) e' verdade
+e2:	push_int 0
+	jeq f1
+	push_int 1	# ano % 4 == 0 && (...) e' verdade
+	jump e1
+f1:	push_int 0	# ano % 4 == 0 && (...) e' verdade
+e1:	return
+
+dias_mes:
+	locals 2 0
+	push_arg 0 1
+	push_int 1
+	jeq case1	# mes == 1
+	push_arg 0 1
+	push_int 3
+	jeq case1	# mes == 3
+	push_arg 0 1
+	push_int 5
+	jeq case1	# mes == 5
+	push_arg 0 1
+	push_int 7
+	jeq case1	# mes == 7
+	push_arg 0 1
+	push_int 8
+	jeq case1	# mes == 8
+	push_arg 0 1
+	push_int 10
+	jeq case1	# mes == 10
+	push_arg 0 1
+	push_int 12
+	jeq case1	# mes == 12
+	jump prox1
+case1:	push_int 31
+	return		# return 31
+prox1:	push_arg 0 1
+	push_int 4
+	jeq case2	# mes == 4
+	push_arg 0 1
+	push_int 6
+	jeq case2	# mes == 6
+	push_arg 0 1
+	push_int 9
+	jeq case2	# mes == 9
+	push_arg 0 1
+	push_int 11
+	jeq case2	# mes == 11
+	jump prox2
+case2:	push_int 30
+	return		# return 30
+prox2:	push_arg 0 1
+	push_int 2
+	jeq case3	# mes == 2
+	jump fim
+case3:	push_int 28
+	push_arg 0 2
+	set_arg 1
+	call 0 bissexto
+	add
+	return		# return 28 + bissexto(ano)
+fim:	return
+
+dia_ano:
+	locals 3 0
+	call -1 dias_ate	
+	push_arg 0 1
+	add
+	return		# return dias_ate() + dia
+
+dias_ate:
+	locals 0 2
+	push_int 0
+	store_var 0 1	# dd = 0
+	push_int 1
+	store_var 0 2	# mm = 1
+for:	push_var 0 2
+	push_arg 1 2
+	jlt corpo	# mm < mes
+	jump sai
+corpo:	push_var 0 1
+	push_var 0 2
+	set_arg 1
+	push_arg 1 3
+	set_arg 2
+	call 1 dias_mes
+	add
+	store_var 0 1	# dd += dias_mes(mm, ano)
+	push_var 0 2
+	push_int 1
+	add
+	store_var 0 2	# ++m
+	jump for
+sai:	push_var 0 1
+	return		# return dd
+
+nome:	locals 1 0
+	push_arg 0 1
+	push_int 1
+	jeq achou1
+	jump next1
+achou1:	print_str "Janeiro"
+	jump esac
+next1:	push_arg 0 1
+	push_int 2
+	jeq achou2
+	jump next2
+achou2:	print_str "Fevereiro"
+	jump esac
+next2:	push_arg 0 1
+	push_int 3
+	jeq achou3
+	jump next3
+achou3:	print_str "Marco"
+	jump esac
+next3:	push_arg 0 1
+	push_int 4
+	jeq achou4
+	jump next4
+achou4:	print_str "Abril"
+	jump esac
+next4:	push_arg 0 1
+	push_int 5
+	jeq achou5
+	jump next5
+achou5:	print_str "Maio"
+	jump esac
+next5:	push_arg 0 1
+	push_int 6
+	jeq achou6
+	jump next6
+achou6:	print_str "Junho"
+	jump esac
+next6:	push_arg 0 1
+	push_int 7
+	jeq achou7
+	jump next7
+achou7:	print_str "Julho"
+	jump esac
+next7:	push_arg 0 1
+	push_int 8
+	jeq achou8
+	jump next8
+achou8:	print_str "Agosto"
+	jump esac
+next8:	push_arg 0 1
+	push_int 9
+	jeq achou9
+	jump next9
+achou9:	print_str "Setembro"
+	jump esac
+next9:	push_arg 0 1
+	push_int 10
+	jeq achou10
+	jump next10
+achou10:print_str "Outubro"
+	jump esac
+next10:	push_arg 0 1
+	push_int 11
+	jeq achou11
+	jump next11
+achou11:print_str "Novembro"
+	jump esac
+next11:	push_arg 0 1
+	push_int 12
+	jeq achou12
+	jump esac
+achou12:print_str "Dezembro"
+esac:	return
+
+program:locals 0 3
+	push_int 25
+	store_var 0 1	# dia = 25
+	push_int 5
+	store_var 0 2	# mes = 5
+	push_int 2013
+	store_var 0 3	# ano = 2013
+	print_str	"O dia "
+	push_var 0 1
+	print
+	print_str " de "
+	push_var 0 2
+	set_arg 1
+	call -1 nome
+	print_str " de "
+	push_var 0 3
+	print
+	print_str " e' o "
+	push_var 0 1
+	set_arg 1
+	push_var 0 2
+	set_arg 2
+	push_var 0 3
+	set_arg 3
+	call -1 dia_ano
+	print
+	print_str "-esimo dia do ano."
+	print_nl
+	return

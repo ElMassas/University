@@ -1,0 +1,24 @@
+program:locals 0 1
+	push_int 100000
+	store_var 0 1		# abc = 100000
+	push_var 0 1
+	set_arg 1
+	call -1 func		# calcula func(abc)
+	set_arg 1
+	call -1 func		# calcula func(func(abc))
+	print
+	print_nl
+	print_str "abc = "
+	push_var 0 1
+	print
+	print_nl
+	return
+func:	locals 1 0
+	push_var 1 1
+	push_int 1
+	add
+	store_var 1 1		# ++abc
+	push_int 2
+	push_arg 0 1
+	mult
+	return			# return 2 * arg

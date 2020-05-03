@@ -1,0 +1,14 @@
+void main()
+begin
+  int fact(int n)
+  begin
+    int i, f = 1;
+
+    for (i = 1; i <= n; ++i)
+      f = f * i;
+
+    return f;
+  end
+
+  println(fact(10));
+end

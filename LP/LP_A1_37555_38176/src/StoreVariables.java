@@ -1,10 +1,6 @@
-package Operations.Variables;
-
-import TISC;
-
 public class StoreVariables extends VariableOperations {
 
-    public StoreVariables( int d, int n ){
+    public StoreVariables( String d, String n ){
         super(d,n);
     }
 

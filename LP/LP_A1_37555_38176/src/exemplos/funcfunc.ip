@@ -1,0 +1,14 @@
+void main()
+begin
+  int abc = 100000;
+
+  int func(int arg)
+  begin
+    ++abc;
+
+    return 2 * arg;
+  end
+
+  println(func(func(abc)));
+  println("abc = ", abc);
+end

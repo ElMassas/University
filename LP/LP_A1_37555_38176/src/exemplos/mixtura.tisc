@@ -1,0 +1,21 @@
+program:locals 0 0
+	call -1 a
+	return
+a:	locals 0 1
+	push_int 127
+	store_var 0 1	# x = 127
+	call -1 b
+	print_str "x = "
+	push_var 0 1
+	print
+	print_nl
+	return
+b:	locals 0 0
+	call 0 c
+	return
+c:	locals 0 0
+	push_var 1 1
+	push_int 2
+	mult
+	store_var 1 1	# x *= 2
+	return

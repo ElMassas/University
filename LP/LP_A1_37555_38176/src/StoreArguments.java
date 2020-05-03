@@ -1,6 +1,6 @@
 public class StoreArguments extends ArgumentsOperations {
 
-    public StoreArguments( int d, int n ) {
+    public StoreArguments( String d, String n ) {
         super(d, n);
     }
 
