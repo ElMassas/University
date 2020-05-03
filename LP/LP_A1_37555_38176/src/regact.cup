@@ -29,7 +29,7 @@ terminal        ADD, SUB, MULT, DIV, MOD, EXP ;
 terminal        PUSH_INT, PUSH_VAR, STORE_VAR, PUSH_ARG, STORE_ARG ;
 terminal        SET_ARG, CALL, LOCALS, RETURN ;
 terminal        JUMP, JEQ, JLT ;
-terminal        PUT, PUT_STR, PUT_NL ;
+terminal        PRINT, PRINT_STR, PRINT_NL ;
 terminal String IDENTIFIER ;
 terminal String	INTEGER, STRING ;
 terminal        TWO_POINTS;
