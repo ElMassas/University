@@ -4,8 +4,8 @@ import Operations.Operations;
 import TISC.Machine;
 
 public class Add extends Operations {
-    public String operationType(){ return "ADD";}
 
+    @Override
     public void execute(Machine machine){
         //changes the values in the evaluation stack
         int t1 = machine.getEvaluationStack().pop();
