@@ -1,6 +1,6 @@
 package Operations.Variables;
 
-import TISC.Machine;
+import TISC;
 
 public class PushVariables extends VariableOperations {
 
@@ -9,7 +9,7 @@ public class PushVariables extends VariableOperations {
     }
 
     @Override
-    public void execute(Machine machine) {
+    public void execute(TISC TISC) {
 
     }
 }

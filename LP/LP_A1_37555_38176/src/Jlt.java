@@ -1,7 +1,3 @@
-package Operations.Jump;
-
-import TISC.Machine;
-
 public class Jlt extends JumpOperation {
 
     public Jlt(String e){
@@ -9,7 +5,7 @@ public class Jlt extends JumpOperation {
     }
 
     @Override
-    public void execute(Machine machine) {
+    public void execute(TISC TISC) {
 
     }
 }

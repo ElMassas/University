@@ -1,8 +1,3 @@
-package Operations.Arguments;
-
-import Operations.Operations;
-import TISC.Machine;
-
 public class PushArguments extends ArgumentsOperations {
 
     public PushArguments(int d, int n){
@@ -10,7 +5,7 @@ public class PushArguments extends ArgumentsOperations {
     }
 
     @Override
-    public void execute(Machine machine) {
+    public void execute(TISC TISC) {
 
     }
 }

@@ -1,7 +1,6 @@
 package Operations.Variables;
 
-import Operations.Arguments.StoreArguments;
-import TISC.Machine;
+import TISC;
 
 public class StoreVariables extends VariableOperations {
 
@@ -10,7 +9,7 @@ public class StoreVariables extends VariableOperations {
     }
 
     @Override
-    public void execute(Machine machine) {
+    public void execute(TISC TISC) {
 
     }
 }

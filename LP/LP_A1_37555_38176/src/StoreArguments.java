@@ -1,7 +1,3 @@
-package Operations.Arguments;
-
-import TISC.Machine;
-
 public class StoreArguments extends ArgumentsOperations {
 
     public StoreArguments( int d, int n ) {
@@ -9,7 +5,7 @@ public class StoreArguments extends ArgumentsOperations {
     }
 
     @Override
-    public void execute(Machine machine) {
+    public void execute(TISC TISC) {
 
     }
 }

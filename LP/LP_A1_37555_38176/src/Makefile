@@ -1,25 +1,27 @@
+# alterar para o caminho onde estao os ficheiros
+TOOLS=~/
 
 JAVA = java
 JAVAFLAGS =
 JAVAC = javac
 JAVACFLAGS =
 
-JCLASSPATH = .:/usr/share/CUP
+JCLASSPATH = .:$(TOOLS)
 
-CUP = cup
-CUPFLAGS = -nosummary
+CUP = java -classpath $(JCLASSPATH) java_cup/Main
+CUPFLAGS =
 
-JLEX = jlex
+JLEX = java -classpath $(JCLASSPATH) JLex/Main
 JLEXFLAGS =
 
 CLASSES = parser.class Yylex.class \
 	  Main.class TISC.class
 	  # etc ...
 
-INTERMEDIATE_FILES = registos.lex.java sym.java parser.java Yylex.java
+INTERMEDIATE_FILES = TISC.lex.java sym.java parser.java Yylex.java
 
 .INTERMEDIATE: sym.java
-.SECONDARY: registos.lex.java Yylex.java
+.SECONDARY: TISC.lex.java Yylex.java
 
 .PHONY: all clean run
 
@@ -30,7 +32,7 @@ all: $(CLASSES)
 
 Main.class: Main.java TISC.class parser.class
 
-parser.java sym.java: registos.cup
+parser.java sym.java: TISC.cup
 	$(CUP) $(CUPFLAGS) $<
 	@[ -s $@ ] || { rm -f $@; exit 1; }
 
@@ -39,13 +41,13 @@ parser.class: parser.java Yylex.class
 
 sym.class: sym.java
 
-registos.lex.java: registos.lex
+TISC.lex.java: TISC.lex
 	$(JLEX) $(JLEXFLAGS) $<
 
 Yylex.java:
-	ln -sf registos.lex.java $@
+	ln -sf TISC.lex.java $@
 
-Yylex.class: Yylex.java registos.lex.java sym.class
+Yylex.class: Yylex.java TISC.lex.java sym.class
 	CLASSPATH=$(JCLASSPATH) $(JAVAC) $(JAVACFLAGS) $<
 
 clean:

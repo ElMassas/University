@@ -1,6 +1,6 @@
 package Operations.Variables;
 
-import Operations.Operations;
+import Operations;
 
 public abstract class VariableOperations extends Operations {
 

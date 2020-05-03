@@ -1,8 +1,3 @@
-package Operations.Functions;
-
-import Operations.Operations;
-import TISC.Machine;
-
 public class SetArguments extends Operations {
 
     private int n;
@@ -12,7 +7,7 @@ public class SetArguments extends Operations {
     }
 
     @Override
-    public void execute(Machine machine) {
+    public void execute(TISC TISC) {
 
     }
 }

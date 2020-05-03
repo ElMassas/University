@@ -1,10 +1,6 @@
-package TISC;
-
-import Operations.Operations;
-
 import java.util.*;
 
-public class Machine {
+public class TISC {
 
     ArrayList<Operations> operationsList;
     Hashtable<String, Integer> labelsPc;
@@ -14,7 +10,7 @@ public class Machine {
     public int returnAdress;
 
 
-    public Machine() {
+    public TISC() {
         operationsList = new ArrayList<Operations>();
         labelsPc = new Hashtable<String, Integer>();
         evaluationStack = new Stack<Integer>();
@@ -65,11 +61,11 @@ public class Machine {
 
     //Executes the TISC program loaded on the machine
     public void execute(){
-        this.setPc("program");//programs always starts with program
+        /*this.setPc("program");//programs always starts with program
         this.returnAdress = pc + 1;
         while(!executionStack.empty()){
             operationsList.get(pc).execute(this);
-        }
+        }*/
     }
 
     public String operationsToBeDone(){

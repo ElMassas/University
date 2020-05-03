@@ -1,8 +1,3 @@
-package Operations.Functions;
-
-import Operations.Operations;
-import TISC.Machine;
-
 public class Call extends Operations {
 
     private int d;
@@ -14,7 +9,7 @@ public class Call extends Operations {
     }
 
     @Override
-    public void execute(Machine machine) {
+    public void execute(TISC TISC) {
 
     }
 }

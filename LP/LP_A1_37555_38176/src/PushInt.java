@@ -1,8 +1,3 @@
-package Operations.IntegerManipulation;
-
-import Operations.Operations;
-import TISC.Machine;
-
 public class PushInt extends Operations {
 
     private int i;
@@ -12,7 +7,7 @@ public class PushInt extends Operations {
     }
 
     @Override
-    public void execute(Machine machine) {
+    public void execute(TISC TISC) {
 
     }
 }

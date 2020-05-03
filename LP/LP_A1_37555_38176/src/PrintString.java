@@ -1,8 +1,3 @@
-package Operations.Exit;
-
-import Operations.Operations;
-import TISC.Machine;
-
 public class PrintString extends Operations {
 
     private String s;
@@ -12,7 +7,7 @@ public class PrintString extends Operations {
     }
 
     @Override
-    public void execute(Machine machine) {
+    public void execute(TISC TISC) {
 
     }
 }
