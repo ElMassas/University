@@ -1,4 +1,16 @@
 package Operations.Functions;
 
-public class Return {
+import Operations.Operations;
+import TISC.Machine;
+
+public class Return extends Operations {
+
+    public Return(){
+
+    }
+
+    @Override
+    public void execute(Machine machine) {
+
+    }
 }

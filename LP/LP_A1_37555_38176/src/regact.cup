@@ -76,7 +76,7 @@ instruction ::=
       |   CALL INTEGER:d IDENTIFIER:p
 	        {: machine.getOperationsList.add(new Call(d, p)); :}
 	  |   LOCALS INTEGER:a IDENTIFIER:v
-            {: machine.getOperationsList.add(new PushVariables(d, n)); :}
+            {: machine.getOperationsList.add(new PushVariables(d, v)); :}
 	  |   RETURN
             {: machine.getOperationsList.add(new Return()); :}
 	  |   JUMP IDENTIFIER:e
