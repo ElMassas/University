@@ -3,15 +3,16 @@ package Operations.Arithmetic;
 import Operations.Operations;
 import TISC.Machine;
 
-public class Add extends Operations {
+public class Add extends ArithmeticOperations{
+
+    private final int PC_JP = 4; //4 bytes
 
     @Override
     public void execute(Machine machine){
         //changes the values in the evaluation stack
-        int t1 = machine.getEvaluationStack().pop();
-        int t2 = machine.getEvaluationStack().pop();
-        machine.getEvaluationStack().push(t1 + t2);
-        machine.changePC(4); //4 bytes
+        super.loadValues(machine);
+        super.setValues(machine,this.t1 + this.t2 );
+        machine.changePC(PC_JP);
     }
 
 }
