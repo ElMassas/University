@@ -11,7 +11,7 @@ public class Add extends Operations {
         int t1 = machine.getEvaluationStack().pop();
         int t2 = machine.getEvaluationStack().pop();
         machine.getEvaluationStack().push(t1 + t2);
-        machine.changePC();
+        machine.changePC(4); //4 bytes
     }
 
 }
