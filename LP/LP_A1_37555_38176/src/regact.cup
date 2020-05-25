@@ -1,0 +1,74 @@
+
+import java_cup.runtime.*;
+
+action code {:
+  // cria uma instancia da maquina
+  TISC maquina = new TISC();
+:} ;
+
+parser code {:
+  Yylex lexer;
+
+  public void report_error(String message, Object error_info) {
+    Symbol info = (Symbol) error_info;
+
+    System.err.print("** " + message);
+    System.err.println(" at `" + info.value + "' in position " + info.left
+		       + " **");
+  }
+
+  public void report_fatal_error(String message, Object _) {
+    System.err.println("** " + message);
+  }
+:} ;
+
+init with {: lexer = new Yylex(System.in); :} ;
+
+scan with {: return lexer.yylex(); :} ;
+
+terminal        ADD, SUB, MULT, DIV, MOD, EXP ;
+terminal        PUSH_INT, PUSH_VAR, STORE_VAR, PUSH_ARG, STORE_ARG ;
+terminal        SET_ARG, CALL, LOCALS, RETURN ;
+terminal        JUMP, JEQ, JLT ;
+terminal        PRINT, PRINT_STR, PRINT_NL ;
+terminal String IDENTIFICADOR ;
+terminal String	INTEIRO, STRING ;
+terminal        DOIS_PONTOS;
+terminal	ERRO ;
+
+non terminal TISC programa ;
+non terminal      etiqueta, instrucao ;
+
+
+programa ::= programa etiqueta instrucao
+	       {: RESULT = maquina; :}
+         |
+	 ;
+
+etiqueta ::= IDENTIFICADOR:e DOIS_PONTOS
+	 |
+	 ;
+
+instrucao ::= 
+	      ADD
+	  |   SUB
+	  |   MULT
+	  |   DIV
+	  |   MOD
+	  |   EXP
+	  |   PUSH_INT INTEIRO:i
+	  |   PUSH_VAR INTEIRO:d INTEIRO:n
+	  |   PUSH_ARG INTEIRO:d INTEIRO:n
+	  |   STORE_VAR INTEIRO:d INTEIRO:n
+	  |   STORE_ARG INTEIRO:d INTEIRO:n
+	  |   SET_ARG INTEIRO:n
+          |   CALL INTEIRO:d IDENTIFICADOR:p
+	  |   LOCALS INTEIRO:a INTEIRO:v
+	  |   RETURN
+	  |   JUMP IDENTIFICADOR:e
+	  |   JEQ IDENTIFICADOR:e
+	  |   JLT IDENTIFICADOR:e
+	  |   PRINT
+	  |   PRINT_STR STRING:s
+	  |   PRINT_NL
+	  ;
