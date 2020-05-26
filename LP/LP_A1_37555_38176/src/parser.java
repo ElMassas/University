@@ -248,7 +248,7 @@ class CUP$parser$actions {
 
 
   // creates an instance of the TISC
-  TISC TISC = new TISC();
+  TISC program = new TISC();
 
   private final parser parser;
 
