@@ -2,7 +2,7 @@ import java_cup.runtime.*;
 
 action code {:
   // creates an instance of the TISC
-  TISC TISC = new TISC();
+  TISC program = new TISC();
 :} ;
 
 parser code {:
