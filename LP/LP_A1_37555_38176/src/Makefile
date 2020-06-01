@@ -14,8 +14,7 @@ CUPFLAGS =
 JLEX = java -classpath $(JCLASSPATH) JLex/Main
 JLEXFLAGS =
 
-CLASSES = parser.class Yylex.class \
-	  Main.class TISC.class
+CLASSES = TISC.class parser.class Yylex.class Main.class
 	  # etc ...
 
 INTERMEDIATE_FILES = TISC.lex.java sym.java parser.java Yylex.java

@@ -2,11 +2,11 @@ import java.util.*;
 
 public class TISC {
 
-  ArrayList<Operations> operationsList;
-  Hashtable<String, Integer> labelsPc;
-  Stack<Integer> evaluationStack;
-  Stack<Integer> executionStack;
-  int pc, ep;
+  public ArrayList<Operations> operationsList;
+  public Hashtable<String, Integer> labelsPc;
+  public Stack<Integer> evaluationStack;
+  public Stack<Integer> executionStack;
+  public int pc, ep;
   public int returnAdress;
 
 

@@ -40,7 +40,7 @@ non terminal      tag, instruction ;
 
 
 program ::= program tag instruction
-	       {: RESULT = TISC; :}
+	       {: RESULT = program; :}
          |
 	 ;
 
@@ -50,44 +50,44 @@ tag ::= IDENTIFIER:e TWO_POINTS
 
 instruction ::=
 	      ADD
-	        {: TISC.getOperationsList().add(new Add()); :}
+	        {: program.getOperationsList().add(new Add()); :}
 	  |   SUB
-	        {: TISC.getOperationsList().add(new Sub()); :}
+	        {: program.getOperationsList().add(new Sub()); :}
 	  |   MULT
-            {: TISC.getOperationsList().add(new Mult()); :}
+            {: program.getOperationsList().add(new Mult()); :}
 	  |   DIV
-            {: TISC.getOperationsList().add(new Div()); :}
+            {: program.getOperationsList().add(new Div()); :}
 	  |   MOD
-            {: TISC.getOperationsList().add(new Mod()); :}
+            {: program.getOperationsList().add(new Mod()); :}
 	  |   EXP
-            {: TISC.getOperationsList().add(new Exp()); :}
+            {: program.getOperationsList().add(new Exp()); :}
 	  |   PUSH_INT INTEGER:i
-	        {: TISC.getOperationsList().add(new PushInt(i)); :}
+	        {: program.getOperationsList().add(new PushInt(i)); :}
 	  |   PUSH_VAR INTEGER:d INTEGER:n
-	        {: TISC.getOperationsList().add(new PushVariables(d, n)); :}
+	        {: program.getOperationsList().add(new PushVariables(d, n)); :}
 	  |   PUSH_ARG INTEGER:d INTEGER:n
-	        {: TISC.getOperationsList().add(new PushArguments(d, n)); :}
+	        {: program.getOperationsList().add(new PushArguments(d, n)); :}
 	  |   STORE_VAR INTEGER:d INTEGER:n
-	        {: TISC.getOperationsList().add(new StoreVariables(d, n)); :}
+	        {: program.getOperationsList().add(new StoreVariables(d, n)); :}
 	  |   STORE_ARG INTEGER:d INTEGER:n
-	        {: TISC.getOperationsList().add(new StoreArguments(d, n)); :}
+	        {: program.getOperationsList().add(new StoreArguments(d, n)); :}
 	  |   SET_ARG INTEGER:n
-	        {: TISC.getOperationsList().add(new SetArguments(n)); :}
+	        {: program.getOperationsList().add(new SetArguments(n)); :}
       |   CALL INTEGER:d IDENTIFIER:p
-	        {: TISC.getOperationsList().add(new Call(d, p)); :}
+	        {: program.getOperationsList().add(new Call(d, p)); :}
 	  |   LOCALS INTEGER:a IDENTIFIER:v
-            {: TISC.getOperationsList().add(new Locals(a, v)); :}
+            {: program.getOperationsList().add(new Locals(a, v)); :}
 	  |   RETURN
-            {: TISC.getOperationsList().add(new Return()); :}
+            {: program.getOperationsList().add(new Return()); :}
 	  |   JUMP IDENTIFIER:e
-            {: TISC.getOperationsList().add(new Jump(e)); :}
+            {: program.getOperationsList().add(new Jump(e)); :}
 	  |   JEQ IDENTIFIER:e
-            {: TISC.getOperationsList().add(new Jeq(e)); :}
+            {: program.getOperationsList().add(new Jeq(e)); :}
 	  |   JLT IDENTIFIER:e
-            {: TISC.getOperationsList().add(new Jlt(e)); :}
+            {: program.getOperationsList().add(new Jlt(e)); :}
 	  |   PRINT
-            {: TISC.getOperationsList().add(new Print()); :}
+            {: program.getOperationsList().add(new Print()); :}
 	  |   PRINT_STR STRING:s
-            {: TISC.getOperationsList().add(new PrintString(s)); :}
+            {: program.getOperationsList().add(new PrintString(s)); :}
 	  |   PRINT_NL
-	        {: TISC.getOperationsList().add(new PrintNewLine()); :};
+	        {: program.getOperationsList().add(new PrintNewLine()); :};
