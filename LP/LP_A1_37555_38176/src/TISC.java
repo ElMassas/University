@@ -2,13 +2,14 @@ import java.util.*;
 
 public class TISC {
 
-  public ArrayList<Operations> operationsList;
+  private ArrayList<Operations> operationsList;
   public Hashtable<String, Integer> labelsPc;
+
   public Stack<Integer> evaluationStack;
   public Stack<Integer> executionStack;
+
   public int pc, ep;
   public int returnAdress;
-
 
   public TISC() {
     operationsList = new ArrayList<Operations>();
@@ -57,25 +58,41 @@ public class TISC {
     this.executionStack = executionStack;
   }
 
-  public void changePC(int value){ this.pc += value; }
-
-  //Executes the TISC program loaded on the machine
-  public void execute(){
-        /*this.setPc("program");//programs always starts with program
-        this.returnAdress = pc + 1;
-        while(!executionStack.empty()){
-            operationsList.get(pc).execute(this);
-        }*/
+  public void changePC(int value) {
+    this.pc += value;
   }
 
-  public String operationsToBeDone(){
+  // Executes the TISC program loaded on the machine
+  public void execute() {
+    /*
+     * this.setPc("program");//programs always starts with program this.returnAdress
+     * = pc + 1; while(!executionStack.empty()){
+     * operationsList.get(pc).execute(this); }
+     */
+  }
+
+  public String operationsToBeDone() {
     String outcome = "";
 
-    for(int i = 0; i < operationsList.size(); i ++){
+    for (int i = 0; i < operationsList.size(); i++) {
       outcome += (operationsList.getClass().getName() + "|\t");
     }
 
-    return  outcome;
+    return outcome;
+  }
+
+  // UI functions
+  public void printOperationsList() {
+    System.out.println("->OperationsList<-");
+    int c = 0;
+    for (Operations op : this.operationsList) {
+      System.out.printf("[%4d]:", c);
+
+      System.out.println(op.getClass().getName());
+
+      c++;
+    }
+
   }
 
 }

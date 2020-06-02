@@ -2,8 +2,7 @@
 
 public class Main {
 
-    public static void main(String args[]) throws Exception
-    {
+    public static void main(String args[]) throws Exception {
         parser aParser = new parser();
         TISC program;
 
@@ -14,7 +13,11 @@ public class Main {
         if (program != null)
             program.execute();
 
-        for( Operations op : program.getOperationsList())
-            System.out.println(op.toString());
+        /*
+         * for( Operations op : program.getOperationsList())
+         * System.out.println(op.toString());
+         */
+
+        program.printOperationsList();
     }
 }
