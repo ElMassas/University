@@ -57,5 +57,5 @@ clean:
 	$(RM) *.class *~
 	$(RM) -r $(BUILDFOLDER)
 
-run: $(CLASSES)
+run:
 	CLASSPATH=$(JCLASSPATH) $(JAVA) $(JAVAFLAGS) Main
