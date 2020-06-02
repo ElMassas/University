@@ -1,18 +1,20 @@
 # alterar para o caminho onde estao os ficheiros
-TOOLS=~/
+TOOLS=./
+
+BUILDFOLDER=./build
 
 JAVA = java
 JAVAFLAGS =
 JAVAC = javac
-JAVACFLAGS =
+JAVACFLAGS = -d $(BUILDFOLDER)
 
-JCLASSPATH = .:$(TOOLS)
+JCLASSPATH = $(BUILDFOLDER):$(TOOLS)
 
-CUP = java -classpath $(JCLASSPATH) java_cup/Main
-CUPFLAGS =
+CUP = java -classpath $(JCLASSPATH) java_cup/Main 
+CUPFLAGS = 
 
 JLEX = java -classpath $(JCLASSPATH) JLex/Main
-JLEXFLAGS =
+JLEXFLAGS = 
 
 CLASSES = TISC.class parser.class Yylex.class Main.class
 	  # etc ...
@@ -25,7 +27,8 @@ INTERMEDIATE_FILES = TISC.lex.java sym.java parser.java Yylex.java
 .PHONY: all clean run
 
 %.class: %.java
-	CLASSPATH=$(JCLASSPATH) $(JAVAC) $(JAVACFLAGS) $<
+	$(JAVAC) $(JAVACFLAGS) $< 
+	#CLASSPATH=$(JCLASSPATH) $(JAVAC) $(JAVACFLAGS) $<
 
 all: $(CLASSES)
 
@@ -52,6 +55,7 @@ Yylex.class: Yylex.java TISC.lex.java sym.class
 clean:
 	$(RM) $(INTERMEDIATE_FILES)
 	$(RM) *.class *~
+	$(RM) -r $(BUILDFOLDER)
 
-run:
+run: $(CLASSES)
 	CLASSPATH=$(JCLASSPATH) $(JAVA) $(JAVAFLAGS) Main
