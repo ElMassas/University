@@ -105,7 +105,7 @@ public class parser extends java_cup.runtime.lr_parser {
     "\001\014\001\015\001\016\001\017\001\020\001\021\001" +
     "\022\001\023\001\024\001\025\001\026\001\027\001\030" +
     "\001\031\001\001\002\000\004\032\037\001\002\000\004" +
-    "\031\040\001\002\000\060\002\uffef\004\uffef\005\uffef\006" +
+    "\032\040\001\002\000\060\002\uffef\004\uffef\005\uffef\006" +
     "\uffef\007\uffef\010\uffef\011\uffef\012\uffef\013\uffef\014\uffef" +
     "\015\uffef\016\uffef\017\uffef\020\uffef\021\uffef\022\uffef\023" +
     "\uffef\024\uffef\025\uffef\026\uffef\027\uffef\030\uffef\031\uffef" +
@@ -233,7 +233,7 @@ public class parser extends java_cup.runtime.lr_parser {
     Symbol info = (Symbol) error_info;
 
     System.err.print("** " + message);
-    System.err.println(" at `" + info.value + "' in position " + info.left
+    System.err.println(" at " + info.value + "' in position " + info.left
 		       + " **");
   }
 
@@ -478,7 +478,7 @@ class CUP$parser$actions {
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // instruction ::= LOCALS INTEGER IDENTIFIER 
+          case 18: // instruction ::= LOCALS INTEGER INTEGER 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;

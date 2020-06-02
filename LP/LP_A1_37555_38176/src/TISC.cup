@@ -12,7 +12,7 @@ parser code {:
     Symbol info = (Symbol) error_info;
 
     System.err.print("** " + message);
-    System.err.println(" at `" + info.value + "' in position " + info.left
+    System.err.println(" at " + info.value + "' in position " + info.left
 		       + " **");
   }
 
@@ -75,7 +75,7 @@ instruction ::=
 	        {: program.getOperationsList().add(new SetArguments(n)); :}
       |   CALL INTEGER:d IDENTIFIER:p
 	        {: program.getOperationsList().add(new Call(d, p)); :}
-	  |   LOCALS INTEGER:a IDENTIFIER:v
+	  |   LOCALS INTEGER:a INTEGER:v
             {: program.getOperationsList().add(new Locals(a, v)); :}
 	  |   RETURN
             {: program.getOperationsList().add(new Return()); :}
