@@ -3,13 +3,13 @@ import java.util.*;
 public class TISC {
 
   private ArrayList<Operations> operationsList;
-  public Hashtable<String, Integer> labelsPc;
+  private Hashtable<String, Integer> labelsPc;
 
-  public Stack<Integer> evaluationStack;
-  public Stack<Integer> executionStack;
+  private Stack<Integer> evaluationStack;
+  private Stack<Integer> executionStack;
 
-  public int pc, ep;
-  public int returnAdress;
+  private int pc, ep;
+  private int returnAdress;
 
   public TISC() {
     operationsList = new ArrayList<Operations>();
