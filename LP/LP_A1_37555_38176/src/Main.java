@@ -1,5 +1,7 @@
 // Programa principal para a implementacaos da maquina abstracta TISC.
 
+import machine.TISC;
+
 public class Main {
 
     public static void main(String args[]) throws Exception {

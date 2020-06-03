@@ -1,4 +1,8 @@
+package machine;
+
 import java.util.*;
+
+import machine.operations.Operations;
 
 public class TISC {
 

@@ -2,6 +2,8 @@
 TOOLS=./
 
 BUILDFOLDER=./build
+MACHINEPACKAGE=./machine
+OPERATIONSPACKAGE=./machine/operations
 
 JAVA = java
 JAVAFLAGS =
@@ -24,7 +26,13 @@ INTERMEDIATE_FILES = TISC.lex.java sym.java parser.java Yylex.java
 .INTERMEDIATE: sym.java
 .SECONDARY: TISC.lex.java Yylex.java
 
-.PHONY: all clean run
+.PHONY: all clean run MachinePackage OperationsPackage
+
+OperationsPackage:
+	$(JAVAC) $(JAVACFLAGS) $(OPERATIONSPACKAGE)/*.java
+
+MachinePackage TISC.class: OperationsPackage
+	$(JAVAC) $(JAVACFLAGS) $(MACHINEPACKAGE)/*.java
 
 %.class: %.java
 	$(JAVAC) $(JAVACFLAGS) $< 

@@ -1,5 +1,8 @@
 import java_cup.runtime.*;
 
+import machine.*;
+import machine.operations.*;
+
 action code {:
   // creates an instance of the TISC
   TISC program = new TISC();

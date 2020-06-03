@@ -1,6 +1,10 @@
+package machine.operations;
+
+import machine.*;
+
 public class Return extends Operations {
 
-    public Return(){
+    public Return() {
 
     }
 

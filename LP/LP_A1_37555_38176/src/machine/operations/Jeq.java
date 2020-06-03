@@ -1,6 +1,10 @@
+package machine.operations;
+
+import machine.TISC;
+
 public class Jeq extends JumpOperation {
 
-    public Jeq( String e ){
+    public Jeq(String e) {
         super(e);
     }
 

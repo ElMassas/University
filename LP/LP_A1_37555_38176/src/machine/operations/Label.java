@@ -1,3 +1,5 @@
+package machine.operations;
+
 public class Label {
     public String label;
 

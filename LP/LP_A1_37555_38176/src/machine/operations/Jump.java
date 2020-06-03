@@ -1,6 +1,10 @@
+package machine.operations;
+
+import machine.*;
+
 public class Jump extends JumpOperation {
 
-    public Jump( String e ){
+    public Jump(String e) {
         super(e);
     }
 

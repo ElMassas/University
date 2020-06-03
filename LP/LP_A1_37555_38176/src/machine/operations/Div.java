@@ -1,3 +1,7 @@
+package machine.operations;
+
+import machine.TISC;
+
 public class Div extends ArithmeticOperations {
 
     @Override

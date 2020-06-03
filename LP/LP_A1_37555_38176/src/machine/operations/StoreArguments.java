@@ -1,6 +1,10 @@
+package machine.operations;
+
+import machine.*;
+
 public class StoreArguments extends ArgumentsOperations {
 
-    public StoreArguments( String d, String n ) {
+    public StoreArguments(String d, String n) {
         super(d, n);
     }
 
