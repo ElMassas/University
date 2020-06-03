@@ -47,50 +47,51 @@ program ::= program tag instruction
          |
 	 ;
 
-tag ::= IDENTIFIER:e TWO_POINTS
-	 |
+tag ::= IDENTIFIER:e TWO_POINTS 
+			{: program.addLable(e); :}
+		|
 	 ;
 
 instruction ::=
 	      ADD
-	        {: program.getOperationsList().add(new Add()); :}
+	        {: program.addOperation(new Add()); :}
 	  |   SUB
-	        {: program.getOperationsList().add(new Sub()); :}
+	        {: program.addOperation(new Sub()); :}
 	  |   MULT
-            {: program.getOperationsList().add(new Mult()); :}
+            {: program.addOperation(new Mult()); :}
 	  |   DIV
-            {: program.getOperationsList().add(new Div()); :}
+            {: program.addOperation(new Div()); :}
 	  |   MOD
-            {: program.getOperationsList().add(new Mod()); :}
+            {: program.addOperation(new Mod()); :}
 	  |   EXP
-            {: program.getOperationsList().add(new Exp()); :}
+            {: program.addOperation(new Exp()); :}
 	  |   PUSH_INT INTEGER:i
-	        {: program.getOperationsList().add(new PushInt(i)); :}
+	        {: program.addOperation(new PushInt(i)); :}
 	  |   PUSH_VAR INTEGER:d INTEGER:n
-	        {: program.getOperationsList().add(new PushVariables(d, n)); :}
+	        {: program.addOperation(new PushVariables(d, n)); :}
 	  |   PUSH_ARG INTEGER:d INTEGER:n
-	        {: program.getOperationsList().add(new PushArguments(d, n)); :}
+	        {: program.addOperation(new PushArguments(d, n)); :}
 	  |   STORE_VAR INTEGER:d INTEGER:n
-	        {: program.getOperationsList().add(new StoreVariables(d, n)); :}
+	        {: program.addOperation(new StoreVariables(d, n)); :}
 	  |   STORE_ARG INTEGER:d INTEGER:n
-	        {: program.getOperationsList().add(new StoreArguments(d, n)); :}
+	        {: program.addOperation(new StoreArguments(d, n)); :}
 	  |   SET_ARG INTEGER:n
-	        {: program.getOperationsList().add(new SetArguments(n)); :}
+	        {: program.addOperation(new SetArguments(n)); :}
       |   CALL INTEGER:d IDENTIFIER:p
-	        {: program.getOperationsList().add(new Call(d, p)); :}
+	        {: program.addOperation(new Call(d, p)); :}
 	  |   LOCALS INTEGER:a INTEGER:v
-            {: program.getOperationsList().add(new Locals(a, v)); :}
+            {: program.addOperation(new Locals(a, v)); :}
 	  |   RETURN
-            {: program.getOperationsList().add(new Return()); :}
+            {: program.addOperation(new Return()); :}
 	  |   JUMP IDENTIFIER:e
-            {: program.getOperationsList().add(new Jump(e)); :}
+            {: program.addOperation(new Jump(e)); :}
 	  |   JEQ IDENTIFIER:e
-            {: program.getOperationsList().add(new Jeq(e)); :}
+            {: program.addOperation(new Jeq(e)); :}
 	  |   JLT IDENTIFIER:e
-            {: program.getOperationsList().add(new Jlt(e)); :}
+            {: program.addOperation(new Jlt(e)); :}
 	  |   PRINT
-            {: program.getOperationsList().add(new Print()); :}
+            {: program.addOperation(new Print()); :}
 	  |   PRINT_STR STRING:s
-            {: program.getOperationsList().add(new PrintString(s)); :}
+            {: program.addOperation(new PrintString(s)); :}
 	  |   PRINT_NL
-	        {: program.getOperationsList().add(new PrintNewLine()); :};
+	        {: program.addOperation(new PrintNewLine()); :};

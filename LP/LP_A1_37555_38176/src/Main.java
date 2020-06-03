@@ -21,5 +21,6 @@ public class Main {
          */
 
         program.printOperationsList();
+        program.printLabels();
     }
 }

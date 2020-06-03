@@ -6,8 +6,9 @@ import machine.operations.Operations;
 
 public class TISC {
 
+  // Machine Variables
   private ArrayList<Operations> operationsList;
-  private Hashtable<String, Integer> labelsPc;
+  private Map<String, Integer> labelsPc;
 
   private Stack<Integer> evaluationStack;
   private Stack<Integer> executionStack;
@@ -15,6 +16,7 @@ public class TISC {
   private int pc, ep;
   private int returnAdress;
 
+  // Constructor
   public TISC() {
     operationsList = new ArrayList<Operations>();
     labelsPc = new Hashtable<String, Integer>();
@@ -22,6 +24,7 @@ public class TISC {
     executionStack = new Stack<Integer>();
   }
 
+  /* Methods */
   public ArrayList<Operations> getOperationsList() {
     return (ArrayList<Operations>) operationsList;
   }
@@ -66,6 +69,14 @@ public class TISC {
     this.pc += value;
   }
 
+  public void addOperation(Operations op) {
+    this.operationsList.add(op);
+  }
+
+  public void addLable(String name) {
+    this.labelsPc.put(name, this.operationsList.size());
+  }
+
   // Executes the TISC program loaded on the machine
   public void execute() {
     /*
@@ -91,9 +102,18 @@ public class TISC {
     int c = 0;
     for (Operations op : this.operationsList) {
       System.out.printf("[%4d]:", c);
-
       System.out.println(op.getClass().getName());
+      c++;
+    }
+  }
 
+  public void printLabels() {
+    System.out.println("->LableList<-");
+    int c = 0;
+    for (Map.Entry<String, Integer> entry : this.labelsPc.entrySet()) {
+      int i = (Integer) entry.getValue();
+      System.out.printf("[%4d]:%s->pos:%d->inst:%s\n", c, (String) entry.getKey(), i,
+          this.operationsList.get(i).getClass().getName());
       c++;
     }
 

@@ -26,7 +26,7 @@ INTERMEDIATE_FILES = TISC.lex.java sym.java parser.java Yylex.java
 .INTERMEDIATE: sym.java
 .SECONDARY: TISC.lex.java Yylex.java
 
-.PHONY: all clean run MachinePackage OperationsPackage
+.PHONY: all clean run recompile MachinePackage OperationsPackage
 
 OperationsPackage:
 	$(JAVAC) $(JAVACFLAGS) $(OPERATIONSPACKAGE)/*.java
@@ -67,3 +67,5 @@ clean:
 
 run:
 	CLASSPATH=$(JCLASSPATH) $(JAVA) $(JAVAFLAGS) Main
+
+recompile: clean all
