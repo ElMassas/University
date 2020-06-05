@@ -11,5 +11,12 @@ public class PushArguments extends ArgumentsOperations {
     @Override
     public void execute(TISC TISC) {
 
+        BlockActivationLog temp = TISC.getActivationlogByDepth(this.d);
+
+        if (!(temp instanceof FunctionActivationLog))
+            System.out.println("Internal ERROR");
+
+        TISC.push(((FunctionActivationLog) temp).getArgument(this.n));
+
     }
 }

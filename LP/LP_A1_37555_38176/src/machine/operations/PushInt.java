@@ -12,6 +12,6 @@ public class PushInt extends Operations {
 
     @Override
     public void execute(TISC TISC) {
-
+        TISC.push(this.i);
     }
 }

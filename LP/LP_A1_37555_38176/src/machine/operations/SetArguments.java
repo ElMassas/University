@@ -12,6 +12,6 @@ public class SetArguments extends Operations {
 
     @Override
     public void execute(TISC TISC) {
-
+        TISC.addArgument(this.n, TISC.pop());
     }
 }

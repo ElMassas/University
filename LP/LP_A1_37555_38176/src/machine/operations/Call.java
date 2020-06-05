@@ -1,6 +1,8 @@
 package machine.operations;
 
-import machine.TISC;
+import java.util.LinkedList;
+
+import machine.*;
 
 public class Call extends Operations {
 
@@ -14,6 +16,6 @@ public class Call extends Operations {
 
     @Override
     public void execute(TISC TISC) {
-
+        TISC.callFunction(name);
     }
 }
