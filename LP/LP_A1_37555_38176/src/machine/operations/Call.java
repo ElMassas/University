@@ -1,11 +1,7 @@
 package machine.operations;
 
-import java.util.LinkedList;
-
 import machine.*;
-import machine.activationlogs.ActivationLog;
-import machine.activationlogs.FunctionActivationLog;
-import machine.activationlogs.FunctionDeclarationActivationLog;
+import machine.activationlogs.*;
 
 public class Call extends Operations {
 
@@ -35,7 +31,7 @@ public class Call extends Operations {
 
         // Create a new Scope for the function
         FunctionActivationLog callScope = new FunctionActivationLog(tisc.getExecutionStack(), declarationScope,
-                new LinkedList<>(), tisc.getArguments());
+                tisc.getArguments(), tisc.getPc());
 
         // Reset the temporary arguments storage
         tisc.cleanArguments();

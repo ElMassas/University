@@ -2,6 +2,7 @@ package machine;
 
 import java.util.*;
 
+import machine.operations.Call;
 import machine.operations.ExecutionException;
 import machine.operations.Locals;
 import machine.operations.Operations;
@@ -81,7 +82,7 @@ public class TISC {
   }
 
   public void addArgument(int n, int val) {
-    this.auxArgs.add(n, val);
+    this.auxArgs.add(n - 1, val);
   }
 
   // Lables
@@ -104,8 +105,6 @@ public class TISC {
     this.end = false;
 
     // Program enviroment
-    int startEnviroment = -1;
-    int count = 0;
     FunctionDeclarationActivationLog temp;
     // Seek all lables by entry order
     for (String name : this.entryOrder) {
@@ -122,28 +121,46 @@ public class TISC {
             lop.getA());
         // set the new Activation log to the top of the stack
         this.executionStack = temp;
-        // Saves the program enviroment for later use
-        if (startEnviroment == -1 && name.compareTo("program") == 0) {
-          startEnviroment = count;
-        }
-        count++;
       }
     }
     // Sets enviroment to start on the program enviroment
-    this.ep = startEnviroment;
+    this.ep = entryOrder.indexOf("program");
 
-    // Debuging
-    this.printFDActivationLogs();
-    this.printOperationsList();
-    this.printLabels();
-    System.out.println("RUN:");
+    // Find Program Scope depth
+    ActivationLog temp2 = this.executionStack;
+    int i = 0;
+    while (temp2 != null) {
+      if (temp2 instanceof FunctionDeclarationActivationLog)
+        if (((FunctionDeclarationActivationLog) temp2).getName().compareTo("program") == 0) {
+          this.setEp(i);
+          break;
+        }
+      temp2 = temp2.getControlLink();
+      i++;
+    }
 
     // Mock program runner
-    /*
-     * try { while (!this.end) { this.operationsList.get(this.pc).execute(this); } }
-     * catch (ExecutionException e) { e.printExecutionException();
-     * System.out.println("* Compiler Traceback"); e.printStackTrace(); }
-     */
+
+    try {
+      // Call program function
+      (new Call("0", "program")).execute(this);
+
+      // Debuging
+      this.printFDActivationLogs();
+      this.printOperationsList();
+      this.printLabels();
+      System.out.println("RUN:");
+
+      while (!this.end) {
+        this.operationsList.get(this.pc).execute(this);
+        this.pc++;
+      }
+    } catch (ExecutionException e) {
+      e.printExecutionException();
+      System.out.println("* Compiler Traceback");
+      e.printStackTrace();
+    }
+
   }
 
   public String operationsToBeDone() {
@@ -193,16 +210,9 @@ public class TISC {
     ActivationLog temp = this.executionStack;
     System.out.println("->FDA Reversed<-");
 
-    int i = 0;
-
     while (temp != null) {
-      if (temp instanceof FunctionDeclarationActivationLog) {
-        System.out.printf("[%4d]->%s\n", i, ((FunctionDeclarationActivationLog) temp).getName());
-      } else {
-        System.out.printf("[%4d]->BlockAL\n", i);
-      }
+      System.out.println(temp.getClass().getName());
       temp = temp.getControlLink();
-      i++;
     }
     System.out.println("Enviroment Pointer is at:" + this.ep);
   }

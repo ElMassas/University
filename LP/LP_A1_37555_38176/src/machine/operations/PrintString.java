@@ -12,6 +12,6 @@ public class PrintString extends Operations {
 
     @Override
     public void execute(TISC TISC) {
-
+        System.out.print(this.s);
     }
 }

@@ -9,7 +9,7 @@ public class Jump extends JumpOperation {
     }
 
     @Override
-    public void execute(TISC TISC) {
-
+    public void execute(TISC tisc) {
+        tisc.setPc(tisc.getAdrByLable(this.e) - 1);
     }
 }
