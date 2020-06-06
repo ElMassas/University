@@ -19,8 +19,5 @@ public class Main {
          * for( Operations op : program.getOperationsList())
          * System.out.println(op.toString());
          */
-
-        program.printOperationsList();
-        program.printLabels();
     }
 }

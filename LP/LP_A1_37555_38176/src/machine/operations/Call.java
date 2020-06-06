@@ -3,6 +3,9 @@ package machine.operations;
 import java.util.LinkedList;
 
 import machine.*;
+import machine.activationlogs.ActivationLog;
+import machine.activationlogs.FunctionActivationLog;
+import machine.activationlogs.FunctionDeclarationActivationLog;
 
 public class Call extends Operations {
 
@@ -15,9 +18,35 @@ public class Call extends Operations {
     }
 
     @Override
-    public void execute(TISC TISC) {
-        TISC.setPc(TISC.getAdrByLable(this.e));
-        int functionDepth = TISC.getEp() + this.d;
+    public void execute(TISC tisc) throws ExecutionException {
+        // Calculate depth relative to the enviroment pointer
+        int functionDepth = tisc.getEp() + this.d;
 
+        // Get Scope
+        ActivationLog functionDeclarationScope = ActivationLog.getActivationLogByDepth(tisc.getExecutionStack(),
+                functionDepth);
+
+        // Check if its a Declaration Scope
+        if (!(functionDeclarationScope instanceof FunctionDeclarationActivationLog))
+            throw new ExecutionException(this, tisc.getPc());
+
+        // Cast to declaration scope
+        FunctionDeclarationActivationLog declarationScope = (FunctionDeclarationActivationLog) functionDeclarationScope;
+
+        // Create a new Scope for the function
+        FunctionActivationLog callScope = new FunctionActivationLog(tisc.getExecutionStack(), declarationScope,
+                new LinkedList<>(), tisc.getArguments());
+
+        // Reset the temporary arguments storage
+        tisc.cleanArguments();
+
+        // Sets the top of the stack to the new scope
+        tisc.setExecutionStack(callScope);
+
+        // The enviroment pointer becomes the top of the stack
+        tisc.setEp(0);
+
+        // Move PC
+        tisc.setPc(tisc.getAdrByLable(this.e));
     }
 }

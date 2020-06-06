@@ -19,4 +19,11 @@ public class ActivationLog {
         return this.accessLink;
     }
 
+    // Class Methods
+    public static ActivationLog getActivationLogByDepth(ActivationLog top, int depth) {
+        for (; depth > 0; depth--)
+            top = top.getControlLink();
+        return top;
+    }
+
 }

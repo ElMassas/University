@@ -2,6 +2,7 @@ package machine;
 
 import java.util.*;
 
+import machine.operations.ExecutionException;
 import machine.operations.Locals;
 import machine.operations.Operations;
 import machine.activationlogs.*;
@@ -20,7 +21,6 @@ public class TISC {
 
   // Aux Variables
   private List<Integer> auxArgs;
-  private List<FunctionDeclarationActivationLog> functions;
   private List<String> entryOrder;
   private boolean end;
 
@@ -32,7 +32,6 @@ public class TISC {
     executionStack = new BlockActivationLog(null, null);
 
     this.auxArgs = new LinkedList<>();
-    this.functions = new LinkedList<>();
     this.entryOrder = new LinkedList<>();
   }
 
@@ -64,12 +63,25 @@ public class TISC {
   }
 
   // Execution Stack
-  private ActivationLog getExecutionStack() {
+  public ActivationLog getExecutionStack() {
     return this.executionStack;
   }
 
-  private void setExecutionStack(BlockActivationLog top) {
+  public void setExecutionStack(ActivationLog top) {
     this.executionStack = top;
+  }
+
+  // Temp Arguments
+  public List<Integer> getArguments() {
+    return this.auxArgs;
+  }
+
+  public void cleanArguments() {
+    this.auxArgs = new LinkedList<>();
+  }
+
+  public void addArgument(int n, int val) {
+    this.auxArgs.add(n, val);
   }
 
   // Lables
@@ -80,15 +92,6 @@ public class TISC {
 
   public int getAdrByLable(String name) {
     return this.labelsPc.get(name);
-  }
-
-  // Arguments
-  public void addArgument(int n, int val) {
-    this.auxArgs.add(n, val);
-  }
-
-  public int getArgument(int n) {
-    return this.auxArgs.get(n);
   }
 
   // Executes the TISC program loaded on the machine
@@ -102,6 +105,7 @@ public class TISC {
 
     // Program enviroment
     int startEnviroment = -1;
+    int count = 0;
     FunctionDeclarationActivationLog temp;
     // Seek all lables by entry order
     for (String name : this.entryOrder) {
@@ -114,25 +118,33 @@ public class TISC {
         temp = new FunctionDeclarationActivationLog(this.executionStack, this.executionStack, name, pointer);
         // set the new Activation log to the top of the stack
         this.executionStack = temp;
-        // Add the Activation link to the function list so its never lost
-        this.functions.add(temp);
         // Saves the program enviroment for later use
         if (startEnviroment == -1 && name.compareTo("program") == 0) {
-          startEnviroment = this.functions.size();
+          startEnviroment = count;
         }
+        count++;
       }
     }
     // Sets enviroment to start on the program enviroment
     this.ep = startEnviroment;
 
+    // Debuging
     this.printFDActivationLogs();
+    this.printOperationsList();
+    this.printLabels();
+    System.out.println("RUN:");
 
     // Mock program runner
-    /*
-     * try { while (!this.end) { this.operationsList.get(this.pc).execute(this); } }
-     * catch (Exception e) { System.out.println("Execution error:" +
-     * e.getMessage()); e.printStackTrace(); }
-     */
+    try {
+      while (!this.end) {
+        this.operationsList.get(this.pc).execute(this);
+      }
+    } catch (ExecutionException e) {
+      e.printExecutionException();
+      System.out.println("* Compiler Traceback");
+      e.printStackTrace();
+    }
+
   }
 
   public String operationsToBeDone() {
@@ -145,14 +157,7 @@ public class TISC {
     return outcome;
   }
 
-  // Operations functions
-  public ActivationLog getActivationlogByDepth(int depth) {
-    ActivationLog temp = this.executionStack;
-    for (; depth > 0; depth--)
-      temp = temp.getControlLink();
-    return temp;
-  }
-
+  // Machine stack operations
   public int pop() {
     return this.evaluationStack.pop();
   }
@@ -184,12 +189,12 @@ public class TISC {
 
   }
 
-  // Testing methods
+  // Testing methods ->To remove<-
   public void printFDActivationLogs() {
     ActivationLog temp = this.executionStack;
     System.out.println("->FDA Reversed<-");
 
-    int i = this.functions.size();
+    int i = 0;
 
     while (temp != null) {
       if (temp instanceof FunctionDeclarationActivationLog) {
@@ -198,7 +203,7 @@ public class TISC {
         System.out.printf("[%4d]->BlockAL\n", i);
       }
       temp = temp.getControlLink();
-      i--;
+      i++;
     }
     System.out.println("Enviroment Pointer is at:" + this.ep);
   }
