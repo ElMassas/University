@@ -5,8 +5,8 @@ public class ExecutionException extends Exception {
     private Operations op;
     private int line;
 
-    public ExecutionException(Operations op, int line) {
-        super();
+    public ExecutionException(Operations op, int line, String mesage) {
+        super(mesage);
         this.op = op;
         this.line = line;
     }

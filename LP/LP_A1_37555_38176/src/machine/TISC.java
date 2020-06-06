@@ -112,10 +112,14 @@ public class TISC {
       // Get the lable pointer
       int pointer = this.labelsPc.get(name);
       // Separate normal lables fromfunction lables
-      if (this.operationsList.get(pointer) instanceof Locals) {
+      Operations op = this.operationsList.get(pointer);
+      if (op instanceof Locals) {
+
+        Locals lop = (Locals) op;
         // Create Activation log for the function declaration and link the control link
         // and a accsses link to the current enviroment
-        temp = new FunctionDeclarationActivationLog(this.executionStack, this.executionStack, name, pointer);
+        temp = new FunctionDeclarationActivationLog(this.executionStack, this.executionStack, name, pointer, lop.getA(),
+            lop.getA());
         // set the new Activation log to the top of the stack
         this.executionStack = temp;
         // Saves the program enviroment for later use
@@ -135,16 +139,11 @@ public class TISC {
     System.out.println("RUN:");
 
     // Mock program runner
-    try {
-      while (!this.end) {
-        this.operationsList.get(this.pc).execute(this);
-      }
-    } catch (ExecutionException e) {
-      e.printExecutionException();
-      System.out.println("* Compiler Traceback");
-      e.printStackTrace();
-    }
-
+    /*
+     * try { while (!this.end) { this.operationsList.get(this.pc).execute(this); } }
+     * catch (ExecutionException e) { e.printExecutionException();
+     * System.out.println("* Compiler Traceback"); e.printStackTrace(); }
+     */
   }
 
   public String operationsToBeDone() {

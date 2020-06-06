@@ -15,7 +15,7 @@ public class PushVariables extends VariableOperations {
 
         ActivationLog eval = ActivationLog.getActivationLogByDepth(tisc.getExecutionStack(), depth);
         if (!(eval instanceof BlockActivationLog))
-            throw new ExecutionException(this, tisc.getPc());
+            throw new ExecutionException(this, tisc.getPc(), "Scope Missmatch");
 
         BlockActivationLog scope = (BlockActivationLog) eval;
         tisc.push(scope.getVariable(this.n));

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class BlockActivationLog extends ActivationLog {
 
     // Data Variables
-    private List<Integer> localVariables;
+    public List<Integer> localVariables;
 
     // Constructors
     public BlockActivationLog(ActivationLog cl, ActivationLog al) {
@@ -24,8 +24,9 @@ public class BlockActivationLog extends ActivationLog {
         return this.localVariables.get(name);
     }
 
-    public void setVariable(int name, int val) {
+    public boolean setVariable(int name, int val) {
         this.localVariables.add(name, val);
+        return true;
     }
 
 }

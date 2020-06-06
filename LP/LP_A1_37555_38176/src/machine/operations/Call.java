@@ -28,7 +28,7 @@ public class Call extends Operations {
 
         // Check if its a Declaration Scope
         if (!(functionDeclarationScope instanceof FunctionDeclarationActivationLog))
-            throw new ExecutionException(this, tisc.getPc());
+            throw new ExecutionException(this, tisc.getPc(), "Invalid Scope");
 
         // Cast to declaration scope
         FunctionDeclarationActivationLog declarationScope = (FunctionDeclarationActivationLog) functionDeclarationScope;

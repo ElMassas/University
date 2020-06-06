@@ -15,7 +15,7 @@ public class StoreVariable extends VariableOperations {
         ActivationLog eval = ActivationLog.getActivationLogByDepth(tisc.getExecutionStack(), depth);
 
         if (!(eval instanceof FunctionActivationLog)) {
-            throw new ExecutionException(this, tisc.getPc());
+            throw new ExecutionException(this, tisc.getPc(), "Scope Missmatch");
         }
 
         ((FunctionActivationLog) eval).setVariable(this.n, tisc.pop());
