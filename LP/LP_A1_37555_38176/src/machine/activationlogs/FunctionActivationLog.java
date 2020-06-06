@@ -7,8 +7,8 @@ public class FunctionActivationLog extends BlockActivationLog {
     private List<Integer> arguments;
 
     // Constructors
-    public FunctionActivationLog(BlockActivationLog current, List<Integer> locals, List<Integer> arguments) {
-        super(current, locals);
+    public FunctionActivationLog(ActivationLog cl, ActivationLog al, List<Integer> locals, List<Integer> arguments) {
+        super(cl, al, locals);
         this.arguments = arguments;
     }
 
