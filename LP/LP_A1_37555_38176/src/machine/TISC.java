@@ -16,7 +16,7 @@ public class TISC {
   private ActivationLog executionStack;
 
   private int pc;
-  private ActivationLog ep;
+  private int ep;
 
   // Aux Variables
   private List<Integer> auxArgs;
@@ -29,7 +29,7 @@ public class TISC {
     operationsList = new ArrayList<Operations>();
     labelsPc = new Hashtable<String, Integer>();
     evaluationStack = new Stack<Integer>();
-    executionStack = new ActivationLog(null, null);
+    executionStack = new BlockActivationLog(null, null);
 
     this.auxArgs = new LinkedList<>();
     this.functions = new LinkedList<>();
@@ -109,7 +109,7 @@ public class TISC {
     this.end = false;
 
     // Program enviroment
-    FunctionDeclarationActivationLog startEnviroment = null;
+    int startEnviroment = -1;
     FunctionDeclarationActivationLog temp;
     // Seek all lables by entry order
     for (String name : this.entryOrder) {
@@ -119,16 +119,14 @@ public class TISC {
       if (this.operationsList.get(pointer) instanceof Locals) {
         // Create Activation log for the function declaration and link the control link
         // and a accsses link to the current enviroment
-        temp = new FunctionDeclarationActivationLog(this.ep, this.ep, name, pointer);
+        temp = new FunctionDeclarationActivationLog(this.executionStack, this.executionStack, name, pointer);
         // set the new Activation log to the top of the stack
         this.executionStack = temp;
         // Add the Activation link to the function list so its never lost
         this.functions.add(temp);
-        // set the new enviroment to the function enviroment
-        this.ep = temp;
         // Saves the program enviroment for later use
-        if (startEnviroment == null && name.compareTo("program") == 0) {
-          startEnviroment = temp;
+        if (startEnviroment == -1 && name.compareTo("program") == 0) {
+          startEnviroment = this.functions.size();
         }
       }
     }
@@ -137,11 +135,11 @@ public class TISC {
 
     this.printFDActivationLogs();
 
+    // Mock program runner
     /*
-     * // Mock program runner while (!this.end) { try {
-     * this.operationsList.get(this.pc).execute(this); } catch (Exception e) {
-     * System.out.println("Execution error:" + e.getMessage()); e.printStackTrace();
-     * } }
+     * try { while (!this.end) { this.operationsList.get(this.pc).execute(this); } }
+     * catch (Exception e) { System.out.println("Execution error:" +
+     * e.getMessage()); e.printStackTrace(); }
      */
   }
 
@@ -196,14 +194,21 @@ public class TISC {
 
   // Testing methods
   public void printFDActivationLogs() {
-    FunctionDeclarationActivationLog temp = (FunctionDeclarationActivationLog) this.executionStack;
+    ActivationLog temp = this.executionStack;
     System.out.println("->FDA Reversed<-");
 
-    while (temp != null) {
-      System.out.println("->" + temp.getName());
-      temp = (FunctionDeclarationActivationLog) temp.getControlLink();
-    }
+    int i = this.functions.size();
 
+    while (temp != null) {
+      if (temp instanceof FunctionDeclarationActivationLog) {
+        System.out.printf("[%4d]->%s\n", i, ((FunctionDeclarationActivationLog) temp).getName());
+      } else {
+        System.out.printf("[%4d]->BlockAL\n", i);
+      }
+      temp = temp.getControlLink();
+      i--;
+    }
+    System.out.println("Enviroment Pointer is at:" + this.ep);
   }
 
 }
