@@ -13,7 +13,7 @@ public class Main {
 
         // e executa-o
         if (program != null)
-            program.execute();
+            program.run();
 
         /*
          * for( Operations op : program.getOperationsList())

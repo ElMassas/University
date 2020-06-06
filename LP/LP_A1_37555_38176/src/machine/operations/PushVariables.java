@@ -1,6 +1,7 @@
 package machine.operations;
 
 import machine.*;
+import machine.activationlogs.*;
 
 public class PushVariables extends VariableOperations {
 
@@ -10,6 +11,6 @@ public class PushVariables extends VariableOperations {
 
     @Override
     public void execute(TISC TISC) {
-        TISC.push(TISC.getActivationlogByDepth(this.d).getVariable(this.n));
+        TISC.push(((FunctionActivationLog) TISC.getActivationlogByDepth(this.d)).getVariable(this.n));
     }
 }

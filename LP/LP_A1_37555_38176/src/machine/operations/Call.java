@@ -16,6 +16,6 @@ public class Call extends Operations {
 
     @Override
     public void execute(TISC TISC) {
-        TISC.callFunction(name);
+        TISC.callFunction(this.e);
     }
 }

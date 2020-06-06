@@ -72,7 +72,7 @@ instruction ::=
 	  |   PUSH_ARG INTEGER:d INTEGER:n
 	        {: program.addOperation(new PushArguments(d, n)); :}
 	  |   STORE_VAR INTEGER:d INTEGER:n
-	        {: program.addOperation(new StoreVariables(d, n)); :}
+	        {: program.addOperation(new StoreVariable(d, n)); :}
 	  |   STORE_ARG INTEGER:d INTEGER:n
 	        {: program.addOperation(new StoreArguments(d, n)); :}
 	  |   SET_ARG INTEGER:n

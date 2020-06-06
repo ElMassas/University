@@ -21,6 +21,7 @@ public class TISC {
   // Aux Variables
   private List<Integer> auxArgs;
   private List<FunctionDeclarationActivationLog> functions;
+  private List<String> entryOrder;
   private boolean end;
 
   // Constructor
@@ -32,6 +33,7 @@ public class TISC {
 
     this.auxArgs = new LinkedList<>();
     this.functions = new LinkedList<>();
+    this.entryOrder = new LinkedList<>();
   }
 
   /* Methods */
@@ -69,6 +71,7 @@ public class TISC {
   // Lables
   public void addLable(String name) {
     this.labelsPc.put(name, this.operationsList.size());
+    this.entryOrder.add(name);
   }
 
   public int getAdrByLable(String name) {
@@ -108,13 +111,15 @@ public class TISC {
     // Program enviroment
     FunctionDeclarationActivationLog startEnviroment = null;
     FunctionDeclarationActivationLog temp;
-    // Seek all lables
-    for (Map.Entry<String, Integer> entry : this.labelsPc.entrySet()) {
+    // Seek all lables by entry order
+    for (String name : this.entryOrder) {
+      // Get the lable pointer
+      int pointer = this.labelsPc.get(name);
       // Separate normal lables fromfunction lables
-      if (this.operationsList.get(entry.getValue()) instanceof Locals) {
+      if (this.operationsList.get(pointer) instanceof Locals) {
         // Create Activation log for the function declaration and link the control link
         // and a accsses link to the current enviroment
-        temp = new FunctionDeclarationActivationLog(this.ep, this.ep, entry.getKey(), entry.getValue());
+        temp = new FunctionDeclarationActivationLog(this.ep, this.ep, name, pointer);
         // set the new Activation log to the top of the stack
         this.executionStack = temp;
         // Add the Activation link to the function list so its never lost
@@ -122,7 +127,7 @@ public class TISC {
         // set the new enviroment to the function enviroment
         this.ep = temp;
         // Saves the program enviroment for later use
-        if (startEnviroment == null && entry.getKey().compareTo("program") == 0) {
+        if (startEnviroment == null && name.compareTo("program") == 0) {
           startEnviroment = temp;
         }
       }

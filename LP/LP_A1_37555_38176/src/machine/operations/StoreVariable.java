@@ -1,6 +1,7 @@
 package machine.operations;
 
 import machine.*;
+import machine.activationlogs.FunctionActivationLog;
 
 public class StoreVariable extends VariableOperations {
 
@@ -10,6 +11,6 @@ public class StoreVariable extends VariableOperations {
 
     @Override
     public void execute(TISC TISC) {
-        TISC.getActivationlogByDepth(this.d).setVariable(this.n, TISC.pop());
+        ((FunctionActivationLog) TISC.getActivationlogByDepth(this.d)).setVariable(this.n, TISC.pop());
     }
 }
