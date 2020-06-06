@@ -26,12 +26,9 @@ INTERMEDIATE_FILES = TISC.lex.java sym.java parser.java Yylex.java
 .INTERMEDIATE: sym.java
 .SECONDARY: TISC.lex.java Yylex.java
 
-.PHONY: all clean run recompile MachinePackage OperationsPackage
+.PHONY: all clean run recompile MachinePackage
 
-OperationsPackage:
-	$(JAVAC) $(JAVACFLAGS) $(OPERATIONSPACKAGE)/*.java
-
-MachinePackage TISC.class: OperationsPackage
+MachinePackage TISC.class:
 	$(JAVAC) $(JAVACFLAGS) $(MACHINEPACKAGE)/*.java
 
 %.class: %.java

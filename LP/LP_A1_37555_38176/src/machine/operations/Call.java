@@ -16,6 +16,8 @@ public class Call extends Operations {
 
     @Override
     public void execute(TISC TISC) {
-        TISC.callFunction(this.e);
+        TISC.setPc(TISC.getAdrByLable(this.e));
+        int functionDepth = TISC.getEp() + this.d;
+
     }
 }

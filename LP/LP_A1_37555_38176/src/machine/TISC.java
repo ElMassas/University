@@ -51,8 +51,12 @@ public class TISC {
     this.pc = p;
   }
 
-  public void changePC(int value) {
-    this.pc += value;
+  public int getEp() {
+    return this.ep;
+  }
+
+  public void setEp(int ep) {
+    this.ep = ep;
   }
 
   public void addOperation(Operations op) {
@@ -85,18 +89,6 @@ public class TISC {
 
   public int getArgument(int n) {
     return this.auxArgs.get(n);
-  }
-
-  // Functions
-  public void callFunction(String name) {
-    this.setPc(this.labelsPc.get(name));
-    this.auxArgs = new LinkedList<>();
-  }
-
-  public void checkFunctionLocals(int a, int l) throws Exception {
-    FunctionActivationLog funclog = (FunctionActivationLog) this.executionStack;
-    if (funclog.getArgumentsSize() != a)
-      throw new Exception("Invalid ArgumentSize at ");
   }
 
   // Executes the TISC program loaded on the machine
