@@ -2,6 +2,7 @@ package machine.operations;
 
 import machine.*;
 import machine.activationlogs.*;
+import java.util.List;
 
 public class Call extends Operations {
 
@@ -29,9 +30,18 @@ public class Call extends Operations {
         // Cast to declaration scope
         FunctionDeclarationActivationLog declarationScope = (FunctionDeclarationActivationLog) functionDeclarationScope;
 
+        // Deap copy the list to an array
+        List<Integer> temp2 = tisc.getArguments();
+        int[] argumentArray = new int[temp2.size()];
+        int c = 0;
+        for (int i : temp2) {
+            argumentArray[c] = i;
+            c++;
+        }
+
         // Create a new Scope for the function
         FunctionActivationLog callScope = new FunctionActivationLog(tisc.getExecutionStack(), declarationScope,
-                tisc.getArguments(), tisc.getPc());
+                declarationScope.getMaxLocals(), argumentArray, tisc.getPc());
 
         // Reset the temporary arguments storage
         tisc.cleanArguments();

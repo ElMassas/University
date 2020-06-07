@@ -1,31 +1,27 @@
 package machine.activationlogs;
 
-import java.util.List;
-import java.util.LinkedList;
-
 public class BlockActivationLog extends ActivationLog {
 
     // Data Variables
-    public List<Integer> localVariables;
+    public int[] localVariables;
 
     // Constructors
-    public BlockActivationLog(ActivationLog cl, ActivationLog al) {
+    public BlockActivationLog(ActivationLog cl, ActivationLog al, int size) {
         super(cl, al);
-        this.localVariables = new LinkedList<>();
+        this.localVariables = new int[size];
     }
 
-    public BlockActivationLog(ActivationLog cl, ActivationLog al, List<Integer> locals) {
-        super(cl, al);
-        this.localVariables = locals;
+    public BlockActivationLog() {
+        this(null, null, 0);
     }
 
     // Geters and Seters
     public int getVariable(int name) {
-        return this.localVariables.get(name);
+        return this.localVariables[name - 1];
     }
 
     public boolean setVariable(int name, int val) {
-        this.localVariables.add(name, val);
+        this.localVariables[name - 1] = val;
         return true;
     }
 

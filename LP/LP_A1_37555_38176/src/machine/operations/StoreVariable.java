@@ -14,10 +14,10 @@ public class StoreVariable extends VariableOperations {
         int depth = tisc.getEp() + this.d;
         ActivationLog eval = ActivationLog.getActivationLogByDepth(tisc.getExecutionStack(), depth);
 
-        if (!(eval instanceof FunctionActivationLog)) {
+        if (!(eval instanceof BlockActivationLog)) {
             throw new ExecutionException(this, tisc.getPc(), "Scope Missmatch");
         }
 
-        ((FunctionActivationLog) eval).setVariable(this.n, tisc.pop());
+        ((BlockActivationLog) eval).setVariable(this.n, tisc.pop());
     }
 }

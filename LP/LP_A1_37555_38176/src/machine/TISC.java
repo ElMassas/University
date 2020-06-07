@@ -2,10 +2,7 @@ package machine;
 
 import java.util.*;
 
-import machine.operations.Call;
-import machine.operations.ExecutionException;
-import machine.operations.Locals;
-import machine.operations.Operations;
+import machine.operations.*;
 import machine.activationlogs.*;
 
 public class TISC {
@@ -23,14 +20,14 @@ public class TISC {
   // Aux Variables
   private List<Integer> auxArgs;
   private List<String> entryOrder;
-  private boolean end;
+  public boolean end;
 
   // Constructor
   public TISC() {
     operationsList = new ArrayList<Operations>();
     labelsPc = new Hashtable<String, Integer>();
     evaluationStack = new Stack<Integer>();
-    executionStack = new BlockActivationLog(null, null);
+    executionStack = new BlockActivationLog();
 
     this.auxArgs = new LinkedList<>();
     this.entryOrder = new LinkedList<>();
@@ -70,6 +67,20 @@ public class TISC {
 
   public void setExecutionStack(ActivationLog top) {
     this.executionStack = top;
+  }
+
+  public int getDepth(ActivationLog al) {
+    int depth = 0;
+    ActivationLog temp = this.executionStack;
+
+    while (temp != null) {
+      if (temp == al) {
+        return depth;
+      }
+      temp = temp.getControlLink();
+      depth++;
+    }
+    return -1;
   }
 
   // Temp Arguments
@@ -118,7 +129,7 @@ public class TISC {
         // Create Activation log for the function declaration and link the control link
         // and a accsses link to the current enviroment
         temp = new FunctionDeclarationActivationLog(this.executionStack, this.executionStack, name, pointer, lop.getA(),
-            lop.getA());
+            lop.getV());
         // set the new Activation log to the top of the stack
         this.executionStack = temp;
       }
@@ -139,7 +150,7 @@ public class TISC {
       i++;
     }
 
-    // Mock program runner
+    // Mock program runner //
 
     try {
       // Call program function
@@ -152,7 +163,9 @@ public class TISC {
       System.out.println("RUN:");
 
       while (!this.end) {
+        System.out.printf("[RUN]:%s\n", this.operationsList.get(this.pc).getClass().getName());
         this.operationsList.get(this.pc).execute(this);
+        this.printFDActivationLogs();
         this.pc++;
       }
     } catch (ExecutionException e) {
@@ -209,9 +222,30 @@ public class TISC {
   public void printFDActivationLogs() {
     ActivationLog temp = this.executionStack;
     System.out.println("->FDA Reversed<-");
-
+    int c = 0;
     while (temp != null) {
-      System.out.println(temp.getClass().getName());
+      if (c == this.ep)
+        System.out.print("[->]:");
+      else
+        System.out.printf("[%2d]:", c);
+      c++;
+
+      System.out.print(temp.getClass().getName() + ":");
+
+      if (temp instanceof FunctionDeclarationActivationLog) {
+        FunctionDeclarationActivationLog temp2 = (FunctionDeclarationActivationLog) temp;
+        System.out.printf(" Name %s, ArgSize %d, LocSize %d ", temp2.getName(), temp2.maxArgs, temp2.maxLocals);
+      }
+      if (temp instanceof BlockActivationLog) {
+        BlockActivationLog temp2 = (BlockActivationLog) temp;
+        System.out.print(" Variable size " + temp2.localVariables.length);
+      }
+      if (temp instanceof FunctionActivationLog) {
+        FunctionActivationLog temp2 = (FunctionActivationLog) temp;
+        System.out.print(" Argument size " + temp2.getArgumentsSize());
+      }
+
+      System.out.println();
       temp = temp.getControlLink();
     }
     System.out.println("Enviroment Pointer is at:" + this.ep);

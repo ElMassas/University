@@ -6,8 +6,8 @@ public class FunctionDeclarationActivationLog extends ActivationLog {
     private int functionPointer;
 
     // Aux
-    private int maxArgs;
-    private int maxLocals;
+    public int maxArgs;
+    public int maxLocals;
 
     public FunctionDeclarationActivationLog(ActivationLog cl, ActivationLog al, String name, int pos, int maxArgs,
             int maxLocals) {

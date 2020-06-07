@@ -4,20 +4,20 @@ import java.util.List;
 
 public class FunctionActivationLog extends BlockActivationLog {
 
-    private List<Integer> arguments;
+    private int[] arguments;
     private int returnAdd;
     private int returnEP;
 
     // Constructors
-    public FunctionActivationLog(ActivationLog cl, ActivationLog al, List<Integer> arguments, int returnAdd) {
-        super(cl, al);
+    public FunctionActivationLog(ActivationLog cl, ActivationLog al, int varSize, int[] arguments, int returnAdd) {
+        super(cl, al, varSize);
         this.arguments = arguments;
         this.returnAdd = returnAdd;
     }
 
     // Geters and Seters
     public int getArgument(int name) {
-        return this.arguments.get(name);
+        return this.arguments[name - 1];
     }
 
     public boolean setArguments(int name, int val) {
@@ -26,12 +26,12 @@ public class FunctionActivationLog extends BlockActivationLog {
 
         if (name < 0 || name > eval.getMaxArgs())
             return false;
-        this.arguments.add(name, val);
+        this.arguments[name - 1] = val;
         return true;
     }
 
     public int getArgumentsSize() {
-        return this.arguments.size();
+        return this.arguments.length;
     }
 
     public int getReturnEP() {
