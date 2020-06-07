@@ -28,14 +28,14 @@ INTERMEDIATE_FILES = TISC.lex.java sym.java parser.java Yylex.java
 
 .PHONY: all clean run recompile MachinePackage
 
+all: $(CLASSES)
+
 MachinePackage TISC.class:
 	$(JAVAC) $(JAVACFLAGS) $(MACHINEPACKAGE)/*.java
 
 %.class: %.java
 	$(JAVAC) $(JAVACFLAGS) $< 
 	#CLASSPATH=$(JCLASSPATH) $(JAVAC) $(JAVACFLAGS) $<
-
-all: $(CLASSES)
 
 Main.class: Main.java TISC.class parser.class
 

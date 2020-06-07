@@ -248,7 +248,6 @@ public class TISC {
       System.out.println();
       temp = temp.getControlLink();
     }
-    System.out.println("Enviroment Pointer is at:" + this.ep);
   }
 
 }
