@@ -17,12 +17,29 @@ public class BlockActivationLog extends ActivationLog {
 
     // Geters and Seters
     public int getVariable(int name) {
+        if (name > localVariables.length) {
+            BlockActivationLog al = BlockActivationLog.convetToBlockActivationLog(this.getAccessesLink());
+            return al.getVariable(name);
+        }
         return this.localVariables[name - 1];
     }
 
     public boolean setVariable(int name, int val) {
+        if (name > localVariables.length) {
+            BlockActivationLog al = BlockActivationLog.convetToBlockActivationLog(this.getAccessesLink());
+            if (al == null)
+                return false;
+            return al.setVariable(name, val);
+        }
+
         this.localVariables[name - 1] = val;
         return true;
+    }
+
+    public static BlockActivationLog convetToBlockActivationLog(ActivationLog log) {
+        if (log instanceof BlockActivationLog)
+            return (BlockActivationLog) log;
+        return null;
     }
 
 }
