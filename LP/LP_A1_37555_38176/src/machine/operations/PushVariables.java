@@ -11,9 +11,15 @@ public class PushVariables extends VariableOperations {
 
     @Override
     public void execute(TISC tisc) throws ExecutionException {
-        int depth = tisc.getEp() + this.d;
+        int depth = this.d;
 
-        ActivationLog eval = ActivationLog.getActivationLogByDepth(tisc.getExecutionStack(), depth);
+        ActivationLog temp = tisc.getExecutionStack();
+
+        for (; depth > 0; depth--)
+            temp = temp.getAccessesLink();
+
+        ActivationLog eval = temp;
+
         if (!(eval instanceof BlockActivationLog))
             throw new ExecutionException(this, tisc.getPc(), "Scope Missmatch");
 

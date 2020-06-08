@@ -17,8 +17,6 @@ public class Call extends Operations {
     @Override
     public void execute(TISC tisc) throws ExecutionException {
         // Calculate depth relative to the enviroment pointer
-        int functionDepth = tisc.getEp() + this.d;
-
         ActivationLog controlLink = tisc.getExecutionStack();
 
         List<String> decorder = tisc.getFunctionOrder();
