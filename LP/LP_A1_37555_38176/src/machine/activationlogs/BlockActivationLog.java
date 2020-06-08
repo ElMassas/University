@@ -6,13 +6,17 @@ public class BlockActivationLog extends ActivationLog {
     public int[] localVariables;
 
     // Constructors
-    public BlockActivationLog(ActivationLog cl, ActivationLog al, int size) {
+    public BlockActivationLog(ActivationLog cl, ActivationLog al) {
         super(cl, al);
-        this.localVariables = new int[size];
+        this.localVariables = null;
     }
 
     public BlockActivationLog() {
-        this(null, null, 0);
+        this(null, null);
+    }
+
+    public void setLocals(int s) {
+        this.localVariables = new int[s];
     }
 
     // Geters and Seters

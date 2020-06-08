@@ -19,16 +19,11 @@ public class Call extends Operations {
         // Calculate depth relative to the enviroment pointer
         int functionDepth = tisc.getEp() + this.d;
 
+        ActivationLog controlLink = tisc.getExecutionStack();
+
         // Get Scope
         ActivationLog functionDeclarationScope = ActivationLog.getActivationLogByDepth(tisc.getExecutionStack(),
                 functionDepth);
-
-        // Check if its a Declaration Scope
-        if (!(functionDeclarationScope instanceof FunctionDeclarationActivationLog))
-            throw new ExecutionException(this, tisc.getPc(), "Invalid Scope");
-
-        // Cast to declaration scope
-        FunctionDeclarationActivationLog declarationScope = (FunctionDeclarationActivationLog) functionDeclarationScope;
 
         // Deap copy the list to an array
         List<Integer> temp2 = tisc.getArguments();
@@ -40,8 +35,8 @@ public class Call extends Operations {
         }
 
         // Create a new Scope for the function
-        FunctionActivationLog callScope = new FunctionActivationLog(tisc.getExecutionStack(), declarationScope,
-                declarationScope.getMaxLocals(), argumentArray, tisc.getPc());
+        FunctionActivationLog callScope = new FunctionActivationLog(controlLink, functionDeclarationScope,
+                argumentArray, tisc.getPc());
 
         // Reset the temporary arguments storage
         tisc.cleanArguments();

@@ -1,7 +1,5 @@
 package machine.activationlogs;
 
-import java.util.List;
-
 public class FunctionActivationLog extends BlockActivationLog {
 
     private int[] arguments;
@@ -9,8 +7,8 @@ public class FunctionActivationLog extends BlockActivationLog {
     private int returnEP;
 
     // Constructors
-    public FunctionActivationLog(ActivationLog cl, ActivationLog al, int varSize, int[] arguments, int returnAdd) {
-        super(cl, al, varSize);
+    public FunctionActivationLog(ActivationLog cl, ActivationLog al, int[] arguments, int returnAdd) {
+        super(cl, al);
         this.arguments = arguments;
         this.returnAdd = returnAdd;
     }
@@ -21,10 +19,7 @@ public class FunctionActivationLog extends BlockActivationLog {
     }
 
     public boolean setArguments(int name, int val) {
-
-        FunctionDeclarationActivationLog eval = (FunctionDeclarationActivationLog) this.getAccessesLink();
-
-        if (name < 0 || name > eval.getMaxArgs())
+        if (name < 0 || name > this.arguments.length)
             return false;
         this.arguments[name - 1] = val;
         return true;
@@ -44,9 +39,8 @@ public class FunctionActivationLog extends BlockActivationLog {
 
     @Override
     public boolean setVariable(int name, int val) {
-        FunctionDeclarationActivationLog eval = (FunctionDeclarationActivationLog) this.getAccessesLink();
 
-        if (name < 0 || name < eval.getMaxLocals())
+        if (name < 0 || name < this.arguments.length)
             return false;
 
         return super.setVariable(name, val);

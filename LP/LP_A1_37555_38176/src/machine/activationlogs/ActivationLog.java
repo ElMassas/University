@@ -21,7 +21,7 @@ public class ActivationLog {
 
     // Class Methods
     public static ActivationLog getActivationLogByDepth(ActivationLog top, int depth) {
-        for (; depth > 0; depth--)
+        for (; depth > 0 && top != null; depth--)
             top = top.getControlLink();
         return top;
     }

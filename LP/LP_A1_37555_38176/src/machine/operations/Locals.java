@@ -23,16 +23,10 @@ public class Locals extends Operations {
 
     @Override
     public void execute(TISC tisc) throws ExecutionException {
-        // Praticaly imposible but we still checked
-        ActivationLog eval = tisc.getExecutionStack();
-        if (!(eval instanceof FunctionActivationLog))
-            throw new ExecutionException(this, tisc.getPc(), "Activation Log missmatch");
+        FunctionActivationLog curr = FunctionActivationLog.convertToFunctionActivationLog(tisc.getExecutionStack());
+        curr.setLocals(this.v);
 
-        // Gets function scope
-        FunctionActivationLog scope = (FunctionActivationLog) eval;
-
-        // Eval argument size
-        if (scope.getArgumentsSize() != this.a)
+        if (curr.getArgumentsSize() != this.a)
             throw new ExecutionException(this, tisc.getPc(), "Invalid Argument Size");
     }
 }

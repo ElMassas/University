@@ -1,5 +1,10 @@
 package machine;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.*;
 
 import machine.operations.*;
@@ -20,7 +25,7 @@ public class TISC {
   // Aux Variables
   private List<Integer> auxArgs;
   private List<String> entryOrder;
-  public boolean end;
+  private Properties properties;
 
   // Constructor
   public TISC() {
@@ -31,6 +36,7 @@ public class TISC {
 
     this.auxArgs = new LinkedList<>();
     this.entryOrder = new LinkedList<>();
+    this.properties = TISC.get_props();
   }
 
   /* Methods */
@@ -112,61 +118,39 @@ public class TISC {
     // Set program to start on the program lable
     this.pc = this.getAdrByLable("program");
 
-    // So the program doesnt end on start
-    this.end = false;
-
-    // Program enviroment
-    FunctionDeclarationActivationLog temp;
-    // Seek all lables by entry order
-    for (String name : this.entryOrder) {
-      // Get the lable pointer
-      int pointer = this.labelsPc.get(name);
-      // Separate normal lables fromfunction lables
-      Operations op = this.operationsList.get(pointer);
-      if (op instanceof Locals) {
-
-        Locals lop = (Locals) op;
-        // Create Activation log for the function declaration and link the control link
-        // and a accsses link to the current enviroment
-        temp = new FunctionDeclarationActivationLog(this.executionStack, this.executionStack, name, pointer, lop.getA(),
-            lop.getV());
-        // set the new Activation log to the top of the stack
-        this.executionStack = temp;
-      }
-    }
     // Sets enviroment to start on the program enviroment
     this.ep = entryOrder.indexOf("program");
 
-    // Find Program Scope depth
-    ActivationLog temp2 = this.executionStack;
-    int i = 0;
-    while (temp2 != null) {
-      if (temp2 instanceof FunctionDeclarationActivationLog)
-        if (((FunctionDeclarationActivationLog) temp2).getName().compareTo("program") == 0) {
-          this.setEp(i);
-          break;
-        }
-      temp2 = temp2.getControlLink();
-      i++;
-    }
-
     // Mock program runner //
-
     try {
       // Call program function
       (new Call("0", "program")).execute(this);
 
       // Debuging
-      this.printFDActivationLogs();
-      this.printOperationsList();
-      this.printLabels();
-      System.out.println("RUN:");
-
-      while (!this.end) {
-        System.out.printf("[RUN]:%s\n", this.operationsList.get(this.pc).getClass().getName());
-        this.operationsList.get(this.pc).execute(this);
+      if (this.properties.getProperty("debug-preExecutionLogs").compareTo("true") == 0) {
         this.printFDActivationLogs();
-        this.pc++;
+        this.printOperationsList();
+        this.printLabels();
+        System.out.println("RUN:");
+      }
+
+      boolean db = this.properties.getProperty("debug-runingLogs").compareTo("true") == 0;
+
+      while (true) {
+        if (db)
+          System.out.printf("[RUN]:%s\n", this.operationsList.get(this.pc).getClass().getName());
+
+        Operations op = this.operationsList.get(this.pc);
+        op.execute(this);
+
+        if (db)
+          this.printFDActivationLogs();
+
+        if (!(op instanceof Call))
+          this.pc++;
+
+        if (this.executionStack.getControlLink() == null)
+          break;
       }
     } catch (ExecutionException e) {
       e.printExecutionException();
@@ -218,10 +202,54 @@ public class TISC {
 
   }
 
+  // Properties
+  public static final String prop_file = "Properties.properties";
+
+  public static Properties defaults(File file) {
+    try {
+      file.createNewFile();
+      OutputStream out = new FileOutputStream(file);
+
+      Properties prop = new Properties();
+
+      // Default properties
+      prop.setProperty("debug-preExecutionLogs", "false");
+      prop.setProperty("debug-runingLogs", "false");
+
+      prop.store(out, null);
+      return prop;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  public static Properties get_props() {
+    try {
+      File temp = new File(prop_file);
+      Properties prop;
+
+      if (!temp.exists()) {
+        prop = defaults(temp);
+      } else {
+
+        InputStream is = new FileInputStream(temp);
+        prop = new Properties();
+        prop.load(is);
+      }
+
+      return prop;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
   // Testing methods ->To remove<-
   public void printFDActivationLogs() {
     ActivationLog temp = this.executionStack;
-    System.out.println("->FDA Reversed<-");
+    System.out.println("->Execution Stack<-");
     int c = 0;
     while (temp != null) {
       if (c == this.ep)
@@ -232,13 +260,10 @@ public class TISC {
 
       System.out.print(temp.getClass().getName() + ":");
 
-      if (temp instanceof FunctionDeclarationActivationLog) {
-        FunctionDeclarationActivationLog temp2 = (FunctionDeclarationActivationLog) temp;
-        System.out.printf(" Name %s, ArgSize %d, LocSize %d ", temp2.getName(), temp2.maxArgs, temp2.maxLocals);
-      }
       if (temp instanceof BlockActivationLog) {
         BlockActivationLog temp2 = (BlockActivationLog) temp;
-        System.out.print(" Variable size " + temp2.localVariables.length);
+        if (temp2.localVariables != null)
+          System.out.print(" Variable size " + temp2.localVariables.length);
       }
       if (temp instanceof FunctionActivationLog) {
         FunctionActivationLog temp2 = (FunctionActivationLog) temp;
