@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>machine.activationlogs</OriginalElement>
+  <nodes>
+    <node x="23.5" y="179.0">machine.activationlogs.BlockActivationLog</node>
+    <node x="36.5" y="0.0">machine.activationlogs.ActivationLog</node>
+    <node x="0.0" y="406.0">machine.activationlogs.FunctionActivationLog</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="machine.activationlogs.BlockActivationLog" target="machine.activationlogs.ActivationLog">
+      <point x="0.0" y="-88.5" />
+      <point x="0.0" y="64.5" />
+    </edge>
+    <edge source="machine.activationlogs.FunctionActivationLog" target="machine.activationlogs.BlockActivationLog">
+      <point x="0.0" y="-112.5" />
+      <point x="0.0" y="88.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="238.0" y="315.5" />
+  <SelectedNodes>
+    <node>machine.activationlogs.FunctionActivationLog</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>machine</OriginalElement>
+  <nodes>
+    <node x="371.0" y="0.0">machine.activationlogs</node>
+    <node x="0.0" y="654.0">machine.operations</node>
+    <node x="0.0" y="0.0">machine.TISC</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="0.9065934065934066" x="289.5" y="354.0" />
+  <SelectedNodes>
+    <node>machine.activationlogs</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

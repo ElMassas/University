@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="343.0" y="0.0">Yylex</node>
+    <node x="0.0" y="686.0">sym</node>
+    <node x="205.0" y="486.0">exemplos</node>
+    <node x="197.0" y="587.0">Tests</node>
+    <node x="0.0" y="0.0">parser</node>
+    <node x="378.0" y="587.0">build</node>
+    <node x="0.0" y="587.0">machine</node>
+    <node x="559.0" y="587.0">JLex</node>
+    <node x="410.0" y="486.0">java_cup</node>
+    <node x="0.0" y="486.0">Main</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="0.9256844850065189" x="343.5" y="363.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>Project Files</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

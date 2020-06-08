@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>machine.operations</OriginalElement>
+  <nodes>
+    <node x="423.0" y="170.5">machine.operations.ArithmeticOperations</node>
+    <node x="1777.8589743589744" y="335.0">machine.operations.Jump</node>
+    <node x="830.0" y="182.5">machine.operations.Print</node>
+    <node x="179.0" y="347.5">machine.operations.Mult</node>
+    <node x="1126.75" y="0.0">machine.operations.Operations</node>
+    <node x="537.0" y="347.5">machine.operations.Add</node>
+    <node x="0.0" y="461.0">machine.operations.ExecutionException</node>
+    <node x="358.0" y="347.5">machine.operations.Exp</node>
+    <node x="221.0" y="170.0">machine.operations.SetArguments</node>
+    <node x="1792.533653846154" y="182.5">machine.operations.JumpOperation</node>
+    <node x="1598.8589743589744" y="335.0">machine.operations.Jlt</node>
+    <node x="651.0" y="170.0">machine.operations.PushInt</node>
+    <node x="1225.301282051282" y="182.5">machine.operations.ArgumentsOperations</node>
+    <node x="42.0" y="182.5">machine.operations.PrintNewLine</node>
+    <node x="1343.8589743589744" y="335.0">machine.operations.PushArguments</node>
+    <node x="902.8333333333333" y="347.5">machine.operations.Mod</node>
+    <node x="2377.8589743589746" y="335.0">machine.operations.StoreVariable</node>
+    <node x="2135.8589743589746" y="335.0">machine.operations.PushVariables</node>
+    <node x="2733.051282051282" y="170.0">machine.operations.PrintString</node>
+    <node x="2042.6009615384614" y="170.0">machine.operations.Call</node>
+    <node x="1956.8589743589744" y="335.0">machine.operations.Jeq</node>
+    <node x="0.0" y="347.5">machine.operations.Sub</node>
+    <node x="1086.8589743589744" y="335.0">machine.operations.StoreArguments</node>
+    <node x="2265.051282051282" y="182.5">machine.operations.VariableOperations</node>
+    <node x="723.8333333333333" y="347.5">machine.operations.Div</node>
+    <node x="2538.051282051282" y="146.0">machine.operations.Locals</node>
+    <node x="1009.0" y="170.0">machine.operations.Return</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="machine.operations.Mult" target="machine.operations.ArithmeticOperations">
+      <point x="0.0" y="-28.0" />
+      <point x="258.5" y="305.0" />
+      <point x="475.0" y="305.0" />
+      <point x="-52.0" y="40.0" />
+    </edge>
+    <edge source="machine.operations.Jump" target="machine.operations.JumpOperation">
+      <point x="0.0" y="-40.5" />
+      <point x="1857.3589743589744" y="315.0" />
+      <point x="1887.033653846154" y="315.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="machine.operations.StoreVariable" target="machine.operations.VariableOperations">
+      <point x="0.0" y="-40.5" />
+      <point x="2486.8589743589746" y="315.0" />
+      <point x="2454.801282051282" y="315.0" />
+      <point x="63.25" y="28.0" />
+    </edge>
+    <edge source="machine.operations.JumpOperation" target="machine.operations.Operations">
+      <point x="0.0" y="-28.0" />
+      <point x="1887.033653846154" y="116.0" />
+      <point x="1226.125" y="116.0" />
+      <point x="19.875" y="28.0" />
+    </edge>
+    <edge source="machine.operations.Sub" target="machine.operations.ArithmeticOperations">
+      <point x="0.0" y="-28.0" />
+      <point x="79.5" y="295.0" />
+      <point x="440.33333333333326" y="295.0" />
+      <point x="-86.66666666666674" y="40.0" />
+    </edge>
+    <edge source="machine.operations.Mod" target="machine.operations.ArithmeticOperations">
+      <point x="0.0" y="-28.0" />
+      <point x="982.3333333333333" y="295.0" />
+      <point x="613.6666666666665" y="295.0" />
+      <point x="86.66666666666652" y="40.0" />
+    </edge>
+    <edge source="machine.operations.ArithmeticOperations" target="machine.operations.Operations">
+      <point x="0.0" y="-40.0" />
+      <point x="527.0" y="96.0" />
+      <point x="1159.875" y="96.0" />
+      <point x="-46.375" y="28.0" />
+    </edge>
+    <edge source="machine.operations.Locals" target="machine.operations.Operations">
+      <point x="0.0" y="-64.5" />
+      <point x="2625.551282051282" y="86.0" />
+      <point x="1265.875" y="86.0" />
+      <point x="59.625" y="28.0" />
+    </edge>
+    <edge source="machine.operations.VariableOperations" target="machine.operations.Operations">
+      <point x="0.0" y="-28.0" />
+      <point x="2391.551282051282" y="96.0" />
+      <point x="1252.625" y="96.0" />
+      <point x="46.375" y="28.0" />
+    </edge>
+    <edge source="machine.operations.Exp" target="machine.operations.ArithmeticOperations">
+      <point x="0.0" y="-28.0" />
+      <point x="437.5" y="315.0" />
+      <point x="509.6666666666665" y="315.0" />
+      <point x="-17.333333333333485" y="40.0" />
+    </edge>
+    <edge source="machine.operations.PushInt" target="machine.operations.Operations">
+      <point x="0.0" y="-40.5" />
+      <point x="730.5" y="106.0" />
+      <point x="1173.125" y="106.0" />
+      <point x="-33.125" y="28.0" />
+    </edge>
+    <edge source="machine.operations.Call" target="machine.operations.Operations">
+      <point x="0.0" y="-40.5" />
+      <point x="2122.1009615384614" y="106.0" />
+      <point x="1239.375" y="106.0" />
+      <point x="33.125" y="28.0" />
+    </edge>
+    <edge source="machine.operations.Print" target="machine.operations.Operations">
+      <point x="0.0" y="-28.0" />
+      <point x="909.5" y="116.0" />
+      <point x="1186.375" y="116.0" />
+      <point x="-19.875" y="28.0" />
+    </edge>
+    <edge source="machine.operations.Jlt" target="machine.operations.JumpOperation">
+      <point x="0.0" y="-40.5" />
+      <point x="1678.3589743589744" y="315.0" />
+      <point x="1824.033653846154" y="315.0" />
+      <point x="-63.0" y="28.0" />
+    </edge>
+    <edge source="machine.operations.StoreArguments" target="machine.operations.ArgumentsOperations">
+      <point x="0.0" y="-40.5" />
+      <point x="1205.3589743589744" y="315.0" />
+      <point x="1293.301282051282" y="315.0" />
+      <point x="-68.0" y="28.0" />
+    </edge>
+    <edge source="machine.operations.Div" target="machine.operations.ArithmeticOperations">
+      <point x="0.0" y="-28.0" />
+      <point x="803.3333333333333" y="305.0" />
+      <point x="579.0" y="305.0" />
+      <point x="52.0" y="40.0" />
+    </edge>
+    <edge source="machine.operations.PrintString" target="machine.operations.Operations">
+      <point x="0.0" y="-40.5" />
+      <point x="2813.551282051282" y="76.0" />
+      <point x="1279.125" y="76.0" />
+      <point x="72.875" y="28.0" />
+    </edge>
+    <edge source="machine.operations.SetArguments" target="machine.operations.Operations">
+      <point x="0.0" y="-40.5" />
+      <point x="312.0" y="86.0" />
+      <point x="1146.625" y="86.0" />
+      <point x="-59.625" y="28.0" />
+    </edge>
+    <edge source="machine.operations.Return" target="machine.operations.Operations">
+      <point x="0.0" y="-40.5" />
+      <point x="1088.5" y="126.0" />
+      <point x="1199.625" y="126.0" />
+      <point x="-6.625" y="28.0" />
+    </edge>
+    <edge source="machine.operations.PrintNewLine" target="machine.operations.Operations">
+      <point x="0.0" y="-28.0" />
+      <point x="121.5" y="76.0" />
+      <point x="1133.375" y="76.0" />
+      <point x="-72.875" y="28.0" />
+    </edge>
+    <edge source="machine.operations.PushArguments" target="machine.operations.ArgumentsOperations">
+      <point x="0.0" y="-40.5" />
+      <point x="1461.3589743589744" y="315.0" />
+      <point x="1429.301282051282" y="315.0" />
+      <point x="68.0" y="28.0" />
+    </edge>
+    <edge source="machine.operations.PushVariables" target="machine.operations.VariableOperations">
+      <point x="0.0" y="-40.5" />
+      <point x="2246.8589743589746" y="315.0" />
+      <point x="2328.301282051282" y="315.0" />
+      <point x="-63.25" y="28.0" />
+    </edge>
+    <edge source="machine.operations.Add" target="machine.operations.ArithmeticOperations">
+      <point x="0.0" y="-28.0" />
+      <point x="616.5" y="315.0" />
+      <point x="544.3333333333335" y="315.0" />
+      <point x="17.333333333333485" y="40.0" />
+    </edge>
+    <edge source="machine.operations.ArgumentsOperations" target="machine.operations.Operations">
+      <point x="0.0" y="-28.0" />
+      <point x="1361.301282051282" y="126.0" />
+      <point x="1212.875" y="126.0" />
+      <point x="6.625" y="28.0" />
+    </edge>
+    <edge source="machine.operations.Jeq" target="machine.operations.JumpOperation">
+      <point x="0.0" y="-40.5" />
+      <point x="2036.3589743589744" y="315.0" />
+      <point x="1950.033653846154" y="315.0" />
+      <point x="63.0" y="28.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6740631163708086" x="1004.0000000000001" y="205.5" />
+  <SelectedNodes>
+    <node>machine.operations.Return</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

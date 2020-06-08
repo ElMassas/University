@@ -5,9 +5,6 @@ import functools
 #https://blog.newrelic.com/engineering/python-programming-styles/
 #https://opensource.com/article/19/10/python-programming-paradigms
 
-def mdc_functional(a, b):
-    #someone else do this dumb sheite
-
 def mdc_procedural(a, b):
     while(true):
         if a == b:
@@ -39,9 +36,9 @@ def mdc_imperative(a, b):
     if a == b:
         print('mmc ->' + str(a))
     elif b > a:
-        mdc(a, b - a)
+        mdc_imperative(a, b - a)
     else:
-        mdc( a - b, b)
+        mdc_imperative( a - b, b)
         
         
 if __name__ == "__main__":
@@ -52,4 +49,3 @@ if __name__ == "__main__":
     mdc_imperative(int(a), int(b))
     mdc_oo(int(a), int(b))
     mdc_procedural(int(a), int(b))
-    mdc_functional(int(a), int(b))
