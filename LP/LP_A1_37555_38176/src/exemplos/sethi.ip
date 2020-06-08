@@ -1,5 +1,5 @@
 /*
-  Inspirado por um exercício do livro
+  Inspirado por um exercï¿½cio do livro
 
   Ravi Sethi, "Programming Languages: Concepts and Constructs, 2nd
   Edition". Addison Wesley, 1996.
@@ -17,10 +17,10 @@ begin
     begin
       int R()
       begin
-	a = 1;
-	z = P();
+        a = 1;
+        z = P();
 
-	return 10 * z;
+        return 10 * z;
       end
 
       y = R();
@@ -30,11 +30,11 @@ begin
 
     if (a == 0)
       begin
-	x = Q();
+        x = Q();
 
-	println("x = ", x, ", y = ", y, ", z = ", z);
+        println("x = ", x, ", y = ", y, ", z = ", z);
 
-	return 10 * x;
+        return 10 * x;
       end
     else
       return 1;

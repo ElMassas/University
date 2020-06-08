@@ -1,10 +1,6 @@
 package machine;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.*;
 
 import machine.operations.*;
@@ -24,8 +20,9 @@ public class TISC {
 
   // Aux Variables
   private List<Integer> auxArgs;
-  private List<String> entryOrder;
   private Properties properties;
+  private List<String> lableOrder;
+  private List<String> functionsOrder;
 
   // Constructor
   public TISC() {
@@ -35,8 +32,9 @@ public class TISC {
     executionStack = new BlockActivationLog();
 
     this.auxArgs = new LinkedList<>();
-    this.entryOrder = new LinkedList<>();
     this.properties = TISC.get_props();
+    this.lableOrder = new LinkedList<>();
+    this.functionsOrder = new LinkedList<>();
   }
 
   /* Methods */
@@ -105,11 +103,24 @@ public class TISC {
   // Lables
   public void addLable(String name) {
     this.labelsPc.put(name, this.operationsList.size());
-    this.entryOrder.add(name);
+    this.lableOrder.add(name);
   }
 
   public int getAdrByLable(String name) {
     return this.labelsPc.get(name);
+  }
+
+  private void findFunctionOrder() {
+    for (String labl : this.lableOrder) {
+      Operations op = this.operationsList.get(this.getAdrByLable(labl));
+      if (op instanceof Locals) {
+        this.functionsOrder.add(labl);
+      }
+    }
+  }
+
+  public List getFunctionOrder() {
+    return this.functionsOrder;
   }
 
   // Executes the TISC program loaded on the machine
@@ -118,8 +129,7 @@ public class TISC {
     // Set program to start on the program lable
     this.pc = this.getAdrByLable("program");
 
-    // Sets enviroment to start on the program enviroment
-    this.ep = entryOrder.indexOf("program");
+    this.findFunctionOrder();
 
     // Mock program runner //
     try {
@@ -143,7 +153,7 @@ public class TISC {
         Operations op = this.operationsList.get(this.pc);
         op.execute(this);
 
-        if (db)
+        if (db && ((op instanceof Call) || (op instanceof Return)))
           this.printFDActivationLogs();
 
         if (!(op instanceof Call))
@@ -267,8 +277,16 @@ public class TISC {
       }
       if (temp instanceof FunctionActivationLog) {
         FunctionActivationLog temp2 = (FunctionActivationLog) temp;
-        System.out.print(" Argument size " + temp2.getArgumentsSize());
+        System.out.printf(" Name %s Argument size %d ", temp2.name, temp2.getArgumentsSize());
       }
+
+      System.out.print("Linked to ");
+      ActivationLog link = temp.getAccessesLink();
+      FunctionActivationLog temp2 = FunctionActivationLog.convertToFunctionActivationLog(link);
+      if (temp2 != null)
+        System.out.print(temp2.name);
+      else
+        System.out.print("Some block");
 
       System.out.println();
       temp = temp.getControlLink();

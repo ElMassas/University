@@ -21,9 +21,15 @@ public class Call extends Operations {
 
         ActivationLog controlLink = tisc.getExecutionStack();
 
-        // Get Scope
-        ActivationLog functionDeclarationScope = ActivationLog.getActivationLogByDepth(tisc.getExecutionStack(),
-                functionDepth);
+        List<String> decorder = tisc.getFunctionOrder();
+        int call = decorder.indexOf(this.e) - 1;
+
+        if (call < 0)
+            call = 0;
+
+        String funcAlog = decorder.get(call);
+
+        ActivationLog al = FunctionActivationLog.findByName(tisc.getExecutionStack(), funcAlog);
 
         // Deap copy the list to an array
         List<Integer> temp2 = tisc.getArguments();
@@ -35,8 +41,8 @@ public class Call extends Operations {
         }
 
         // Create a new Scope for the function
-        FunctionActivationLog callScope = new FunctionActivationLog(controlLink, functionDeclarationScope,
-                argumentArray, tisc.getPc());
+        FunctionActivationLog callScope = new FunctionActivationLog(controlLink, al, argumentArray, tisc.getPc(),
+                this.e);
 
         // Reset the temporary arguments storage
         tisc.cleanArguments();

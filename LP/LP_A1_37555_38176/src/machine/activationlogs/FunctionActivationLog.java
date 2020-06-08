@@ -6,11 +6,15 @@ public class FunctionActivationLog extends BlockActivationLog {
     private int returnAdd;
     private int returnEP;
 
+    // Aux
+    public String name;
+
     // Constructors
-    public FunctionActivationLog(ActivationLog cl, ActivationLog al, int[] arguments, int returnAdd) {
+    public FunctionActivationLog(ActivationLog cl, ActivationLog al, int[] arguments, int returnAdd, String name) {
         super(cl, al);
         this.arguments = arguments;
         this.returnAdd = returnAdd;
+        this.name = name;
     }
 
     // Geters and Seters
@@ -53,6 +57,15 @@ public class FunctionActivationLog extends BlockActivationLog {
             return null;
 
         return (FunctionActivationLog) al;
+    }
+
+    public static ActivationLog findByName(ActivationLog top, String name) {
+        for (; top != null; top = top.getControlLink()) {
+            FunctionActivationLog conv = convertToFunctionActivationLog(top);
+            if (conv != null && conv.name.compareTo(name) == 0)
+                return top;
+        }
+        return null;
     }
 
 }
