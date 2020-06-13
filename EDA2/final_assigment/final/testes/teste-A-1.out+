@@ -1,0 +1,24 @@
+> novo: ABCD01 em PT
++ estudante ABCD01 existe
++ estudante ABCD01 existe
+> novo: ABCD02 em ES
++ estudante ABCD02 existe
+> removido: ABCD02
++ estudante ABCD02 inexistente
+> novo: ABCD02 em FR
+> terminou: ABCD01
++ estudante ABCD01 terminou
++ estudante ABCD01 terminou
++ estudante ABCD01 existe
++ estudante ABCD03 inexistente
++ estudante ABCD01 terminou
+> abandonou: ABCD02
++ estudante ABCD02 abandonou
++ estudante ABCD02 abandonou
++ estudante ABCD02 abandonou
++ estudante ABCD02 existe
++ estudante ABCD03 inexistente
++ PT - correntes: 0, diplomados: 1, abandonaram: 0, total: 1
++ FR - correntes: 0, diplomados: 0, abandonaram: 1, total: 1
++ sem dados sobre ES
++ sem dados sobre XX

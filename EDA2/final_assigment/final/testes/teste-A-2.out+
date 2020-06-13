@@ -1,0 +1,15 @@
+> novo: JD8D7K em PT
++ PT - correntes: 1, diplomados: 1, abandonaram: 0, total: 2
++ estudante ABCD02 abandonou
++ estudante ABCD01 terminou
+> novo: PTPTPT em PT
++ PT - correntes: 2, diplomados: 1, abandonaram: 0, total: 3
+> removido: JD8D7K
++ PT - correntes: 1, diplomados: 1, abandonaram: 0, total: 2
++ estudante JD8D7K inexistente
++ estudante JD8D7K inexistente
+> novo: JD8D7K em PT
++ PT - correntes: 2, diplomados: 1, abandonaram: 0, total: 3
+> abandonou: JD8D7K
++ estudante JD8D7K abandonou
++ PT - correntes: 1, diplomados: 1, abandonaram: 1, total: 3
