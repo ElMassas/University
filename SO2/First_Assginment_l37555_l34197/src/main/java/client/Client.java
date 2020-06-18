@@ -97,7 +97,7 @@ public class Client {
 
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||");
-        System.out.println("\tWelcome to the NECESSITRON9000 main menu!!");
+        System.out.println("\tWelcome to the NECESSITRON9001 main menu!!");
         System.out.println("\tPlease choose an option.");
         System.out.print("\t 1-> Register a necessity for a product."
                 + "\n\t 2-> Check what people have a necessity for."
