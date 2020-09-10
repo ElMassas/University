@@ -9,14 +9,14 @@ import machine.activationlogs.*;
 public class TISC {
 
   // Machine Variables
-  private ArrayList<Operations> operationsList;
-  private Map<String, Integer> labelsPc;
+  private ArrayList<Operations> operationsList;//inst por ordem
+  private Map<String, Integer> labelsPc;//nome label mapped para pc
 
   private Stack<Integer> evaluationStack;
   private ActivationLog executionStack;
 
   private int pc;
-  private int ep;
+  private int ep;//enviroment pointer, topo da execution stack
 
   // Aux Variables
   private List<Integer> auxArgs;
@@ -29,7 +29,7 @@ public class TISC {
     operationsList = new ArrayList<Operations>();
     labelsPc = new Hashtable<String, Integer>();
     evaluationStack = new Stack<Integer>();
-    executionStack = new BlockActivationLog();
+    executionStack = new BlockActivationLog();//topo da stak, registo de ativação,(ligados entre si pelo cl)
 
     this.auxArgs = new LinkedList<>();
     this.properties = TISC.get_props();
@@ -73,7 +73,7 @@ public class TISC {
     this.executionStack = top;
   }
 
-  public int getDepth(ActivationLog al) {
+  /*public int getDepth(ActivationLog al) {//looks depth for current actiovation log in the execution stack
     int depth = 0;
     ActivationLog temp = this.executionStack;
 
@@ -85,7 +85,7 @@ public class TISC {
       depth++;
     }
     return -1;
-  }
+  }*/
 
   // Temp Arguments
   public List<Integer> getArguments() {
@@ -170,7 +170,7 @@ public class TISC {
 
   }
 
-  public String operationsToBeDone() {
+  /*public String operationsToBeDone() {
     String outcome = "";
 
     for (int i = 0; i < operationsList.size(); i++) {
@@ -178,7 +178,7 @@ public class TISC {
     }
 
     return outcome;
-  }
+  }*/
 
   // Machine stack operations
   public int pop() {

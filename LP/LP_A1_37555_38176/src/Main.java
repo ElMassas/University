@@ -14,10 +14,5 @@ public class Main {
         // e executa-o
         if (program != null)
             program.run();
-
-        /*
-         * for( Operations op : program.getOperationsList())
-         * System.out.println(op.toString());
-         */
     }
 }

@@ -1,0 +1,64 @@
+## Sockets
+
+**->**Allow communication between 2 different processes on the same or diff machines. It's an endpoint of a 2-way communication link between 2 programs running on the same network. A socket is bound to a port number so that the TCP(stream socket) layer can identify the application that data is destined to be sent to. Combination of an IP address and a port number
+
+### Stream socket
+---
+Delivery in a network is guaranteed. Data packets through the stream socket will arrive in the same order. These sockets use TCP for data transmission. If delivery is impossible, the sender receives an error indicator.
+
+### Datagram socket
+---
+
+Delivery is not guaranteed. They're connectionless due to not needing to have an open connection as in stream sockets. They use UDP
+
+### Raw socket
+---
+
+Provide user access to the underlying communications protocols which support socket abstractions. Normally datagram oriented, although they're exact characteristics are dependent on the interface provided by the protocol. Not intended for the general user
+
+### Sequecend packet socket
+---
+
+Similar to a stream socket, with the exception that record boundaries are preserved. 
+
+
+## Client Processes
+
+Typically makes a request for information, after receiving the information it may terminate or due some other processing
+
+
+## Server Process
+
+Takes requests from the client, upon which well it perform the required processing. After the processing has been done, the response gets sent to the client.
+
+
+## Client and server Interaction
+
+**On the TCP Server side**:  1º-socket() -> 2º-bind() -> 3º-listen() -> 4º-accept() -> *blocks until connection from client*
+**TCP client**: 1º-socket() -> 2º-connect() (establishes connection with tcp server unblocking it, establishes connection with 3-way handshake)
+**While connected**: the client *writes()* creating a data(request) to the server, which the server will *read()* then process the request, afterwars it will *write()* as well creating a data(reply), which the client will *read()*. This loop continues until the connection is terminated.
+
+***
+### Useful Tips
+-> An application protocol header might be a good choice for a certain application
+-> Threading is most useful for large scale applications
+
+
+
+
+***
+### Useful commands
+-> lsof -i -n 
+    | Outputs connected applications, with the port number, host and Data transfer protocol
+
+-> 
+***
+___
+___
+## Links
+
+[threading](https://realpython.com/python-concurrency/)
+[Python socket Programmin](https://realpython.com/python-sockets/)
+[Unix sockets](https://www.tutorialspoint.com/unix_sockets/index.htm)
+[Problems with asyincIO + multiprocessing](https://stackoverflow.com/questions/21159103/what-kind-of-problems-if-any-would-there-be-combining-asyncio-with-multiproces)
+[AsyincIo and multiprocessing](https://medium.com/analytics-vidhya/asyncio-threading-and-multiprocessing-in-python-4f5ff6ca75e8)

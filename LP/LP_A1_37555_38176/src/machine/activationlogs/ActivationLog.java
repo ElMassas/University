@@ -6,8 +6,8 @@ public class ActivationLog {
     private ActivationLog accessLink;
 
     public ActivationLog(ActivationLog controlLink, ActivationLog accessLink) {
-        this.controlLink = controlLink;
-        this.accessLink = accessLink;
+        this.controlLink = controlLink;//registos de ativação estão ligados entre si usando cl
+        this.accessLink = accessLink;//
     }
 
     // Get
@@ -20,7 +20,7 @@ public class ActivationLog {
     }
 
     // Class Methods
-    public static ActivationLog getActivationLogByDepth(ActivationLog top, int depth) {
+    public static ActivationLog getActivationLogByDepth(ActivationLog top, int depth) {//looks depth for current actiovation log in the execution stack
         for (; depth > 0 && top != null; depth--)
             top = top.getControlLink();
         return top;

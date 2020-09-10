@@ -12,7 +12,7 @@ public class Return extends Operations {
     public void execute(TISC tisc) throws ExecutionException {
 
         // Eval Process
-        FunctionActivationLog current = FunctionActivationLog.convertToFunctionActivationLog(tisc.getExecutionStack());
+        FunctionActivationLog current = FunctionActivationLog.convertToFunctionActivationLog(tisc.getExecutionStack());//topo stack registo
         if (current == null)
             throw new ExecutionException(this, tisc.getPc(), "Scope Missmatch");
 
