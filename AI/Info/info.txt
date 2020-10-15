@@ -1,0 +1,11 @@
+http://www.gprolog.org/manual/gprolog.html
+https://www.youtube.com/watch?v=gJOZZvYijqk&t=1s
+https://www.cpp.edu/~jrfisher/www/prolog_tutorial/pt_framer.html
+https://www.doc.gold.ac.uk/~mas02gw/prolog_tutorial/prologpages/
+http://www.gprolog.org/manual/html_node/gprolog007.html#sec10
+http://www.doc.gold.ac.uk/~mas02gw/prolog_tutorial/prologpages/index.html#menu
+http://www.cs.ukzn.ac.za/~hughm/ai/notes/prologsearch.pdf
+https://www.codepoc.io/blog/prolog/4934/prolog-program-to-sort-a-list-using-quick-sort?utm_source=22
+
+prolog is a logical and declarative programming language.
+A program is run by querying and seeing if it's proved agains these know rule's.
