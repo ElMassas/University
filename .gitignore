@@ -842,3 +842,8 @@ tomcat
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar
+
+#Ocaml
+
+.cmi
+.cmo
